@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ML Lab: Proyectos Cinematic y Flujo de Datos</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Inter:wght@200;300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "mercury-silver": "#E2E8F0",
+                        "liquid-blue": "#0A192F",
+                        "deep-ocean": "#020617",
+                        "accent-blue": "#38bdf8",
+                    },
+                    fontFamily: {
+                        "serif": ["Playfair Display", "serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --extreme-glass: rgba(255, 255, 255, 0.05);
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+        }
+        .extreme-glass-btn {
+            background: var(--extreme-glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .liquid-accent {
+            background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 50%, #475569 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-mesh {
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(15, 23, 42, 0.8) 0, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(30, 41, 59, 0.5) 0, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(10, 25, 47, 0.3) 0, transparent 80%);
+        }
+        .particle-stream {
+            background-image: radial-gradient(circle, rgba(226, 232, 240, 0.15) 1px, transparent 1px);
+            background-size: 24px 24px;
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        }
+        .cinematic-mask {
+            mask-image: linear-gradient(to right, black 70%, transparent);
+        }
+        .sidebar-divider {
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(226, 232, 240, 0.2), transparent);
+        }
+    </style>
+</head>
+<body class="bg-deep-ocean font-sans text-mercury-silver/90 min-h-screen selection:bg-mercury-silver selection:text-deep-ocean overflow-x-hidden">
+<div class="fixed inset-0 z-0 bg-mesh"></div>
+<div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-900/10 blur-[120px] rounded-full"></div>
+<nav class="fixed top-0 w-full z-50 px-8 md:px-16 h-24 flex items-center justify-between border-b border-white/5 bg-deep-ocean/30 backdrop-blur-md">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border border-mercury-silver/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-mercury-silver/70">hub</span>
+</div>
+<div class="flex flex-col">
+<span class="font-serif italic text-lg tracking-tight leading-none">ML Laboratory</span>
+<span class="text-[9px] uppercase tracking-[0.3em] opacity-40">DSC UTP Collective</span>
+</div>
+</div>
+<div class="hidden lg:flex items-center gap-10 text-[11px] uppercase tracking-[0.4em] font-light">
+<a class="hover:text-white transition-colors" href="#proyectos">Proyectos</a>
+<a class="hover:text-white transition-colors" href="#eventos">Eventos</a>
+<a class="hover:text-white transition-colors" href="#">Investigación</a>
+</div>
+<button class="px-8 py-2.5 glass-card rounded-full text-[10px] uppercase tracking-[0.2em] hover:bg-white/5 transition-all">
+        Unirse al Lab
+    </button>
+</nav>
+<main class="relative z-10 pt-40 pb-24 px-8 md:px-16 max-w-7xl mx-auto">
+<header class="mb-32">
+<div class="inline-flex items-center gap-2 mb-6 opacity-60">
+<div class="w-12 h-[1px] bg-mercury-silver/30"></div>
+<span class="font-serif italic text-lg">Vanguardia Digital</span>
+</div>
+<h1 class="text-6xl md:text-8xl font-serif mb-8 tracking-tighter leading-[0.9]">
+            Proyectos <br/>
+<span class="italic font-light liquid-accent opacity-90">&amp; Flujo de Datos</span>
+</h1>
+</header>
+<section class="mb-48" id="proyectos">
+<div class="mb-16">
+<h2 class="text-xs uppercase tracking-[0.5em] text-mercury-silver/40 mb-2">Cinematic Portfolio</h2>
+<h3 class="text-4xl font-serif italic">Exploraciones Destacadas</h3>
+</div>
+<div class="flex flex-col gap-16">
+<div class="group relative w-full aspect-[21/9] overflow-hidden rounded-sm glass-card flex">
+<div class="relative flex-grow overflow-hidden">
+<img alt="NLP Visualization" class="w-full h-full object-cover grayscale opacity-40 group-hover:scale-105 group-hover:opacity-60 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMH4p6Y6Lfs86AoMxprPcg7Ug_ZeUb43MM18ACNDnZzPAGb9hPPCk4Q9OFdPUGJACMyBAMm9kPU6ZWhiPkapH-mVKmMs-F9JPendyh-di6mbYMLHUFPqM1S9k8GR96ea6vfyQCcEZ99mtkVQVmFXex7oVmpNgbF9F9562zMNKQFpVfE-CudY0ikQX5990S72Zuc5fcunAltJv_mHphM2pcfqZzfil0uQeKLH1G1OFQOoCLA0hhbtNnXO64tkf2bKKkomf_GeYzMGAZ"/>
+<div class="absolute inset-0 bg-gradient-to-r from-deep-ocean via-transparent to-transparent"></div>
+<div class="absolute bottom-12 left-12 max-w-xl">
+<span class="text-[10px] uppercase tracking-[0.4em] text-accent-blue mb-4 block">Archive 001 / Research</span>
+<h4 class="text-5xl font-serif mb-6 leading-none">Procesamiento de Lenguaje Natural</h4>
+<p class="text-sm font-light text-mercury-silver/60 leading-relaxed">Arquitecturas transformadoras aplicadas a la decodificación semántica de flujos de datos no estructurados en tiempo real.</p>
+</div>
+</div>
+<div class="w-[280px] shrink-0 border-l border-white/10 flex flex-col p-8 justify-between bg-black/20 backdrop-blur-md">
+<div class="space-y-8">
+<div>
+<p class="text-[9px] uppercase tracking-widest text-white/30 mb-4">GitHub Stats</p>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-light">Language</span>
+<span class="text-[11px] font-medium py-0.5 px-2 bg-white/5 rounded">Python</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-light">Stars</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-yellow-500/80">star</span>
+<span class="text-[11px] font-medium">1.2k</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-light">Forks</span>
+<span class="text-[11px] font-medium">234</span>
+</div>
+</div>
+</div>
+</div>
+<a class="group/btn flex items-center justify-between w-full p-4 border border-white/10 hover:border-white/30 transition-all rounded-sm" href="#">
+<span class="text-[10px] uppercase tracking-[0.2em]">Ver Repositorio</span>
+<span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="group relative w-full aspect-[21/9] overflow-hidden rounded-sm glass-card flex">
+<div class="relative flex-grow overflow-hidden">
+<img alt="Predictive Modeling Visualization" class="w-full h-full object-cover grayscale opacity-30 group-hover:scale-105 group-hover:opacity-50 transition-all duration-1000" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbsjB7AGVwDwgBaCMJUqlDUL9W-DlwuirwPP1VLEWZeUKK9KY5Oz8AgkKNw9F7ZwdjmstwYPLgyK8ZeyEyaBfidrSP1AID-Muj0Xurx_C4GWVipB16oxcDcB0AKNODlJ21DaV_p4VpQuYjfNbsplAwoatU2lyvsdWRlwgGj1notTBZFfhxG0wtfILjKg61VpbB96PyGpJI6RI4tA8Vaya89a5Wnl1zftE6XEvc80Ns_DQt1n9c4plboNCnCiAf9Gy2Bq6rwHPn2WLF"/>
+<div class="absolute inset-0 bg-gradient-to-r from-deep-ocean via-transparent to-transparent"></div>
+<div class="absolute bottom-12 left-12 max-w-xl">
+<span class="text-[10px] uppercase tracking-[0.4em] text-accent-blue mb-4 block">Archive 002 / Modeling</span>
+<h4 class="text-5xl font-serif mb-6 leading-none">Modelado Predictivo</h4>
+<p class="text-sm font-light text-mercury-silver/60 leading-relaxed">Sistemas de inferencia probabilística diseñados para la anticipación de anomalías en infraestructuras de datos de alta velocidad.</p>
+</div>
+</div>
+<div class="w-[280px] shrink-0 border-l border-white/10 flex flex-col p-8 justify-between bg-black/20 backdrop-blur-md">
+<div class="space-y-8">
+<div>
+<p class="text-[9px] uppercase tracking-widest text-white/30 mb-4">GitHub Stats</p>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-light">Language</span>
+<span class="text-[11px] font-medium py-0.5 px-2 bg-white/5 rounded">Julia</span>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-light">Stars</span>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-xs text-yellow-500/80">star</span>
+<span class="text-[11px] font-medium">856</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<span class="text-[11px] font-light">License</span>
+<span class="text-[11px] font-medium uppercase">MIT</span>
+</div>
+</div>
+</div>
+</div>
+<a class="group/btn flex items-center justify-between w-full p-4 border border-white/10 hover:border-white/30 transition-all rounded-sm" href="#">
+<span class="text-[10px] uppercase tracking-[0.2em]">Ver Repositorio</span>
+<span class="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<section class="relative" id="eventos">
+<div class="mb-20">
+<h2 class="text-xs uppercase tracking-[0.5em] text-mercury-silver/40 mb-2">Próximos Eventos</h2>
+<h3 class="text-4xl font-serif italic">Sincronización de Conocimiento</h3>
+</div>
+<div class="relative min-h-[600px] py-10">
+<div class="absolute inset-0 particle-stream pointer-events-none opacity-40"></div>
+<div class="relative space-y-24">
+<div class="flex items-center group">
+<div class="w-1/4 pr-12 text-right">
+<span class="text-sm font-light text-accent-blue/60 tracking-[0.3em] block mb-2">OCT 24</span>
+<span class="text-xs uppercase tracking-widest opacity-30">18:00 UTC</span>
+</div>
+<div class="relative w-4 h-4 rounded-full border border-mercury-silver/40 flex items-center justify-center bg-deep-ocean z-10 group-hover:scale-125 transition-transform">
+<div class="w-1.5 h-1.5 bg-mercury-silver rounded-full animate-pulse"></div>
+</div>
+<div class="flex-grow pl-12 flex items-center justify-between">
+<div class="max-w-md transform group-hover:translate-x-4 transition-transform duration-500">
+<h4 class="text-2xl font-serif mb-2 tracking-wide">Workshop: Redes Neuronales Líquidas</h4>
+<p class="text-sm font-light text-mercury-silver/40 leading-relaxed">Exploración profunda sobre arquitecturas adaptativas inspiradas en modelos biológicos.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-3 extreme-glass-btn rounded-sm text-[10px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all">
+                                Inscribirse
+                            </button>
+</div>
+</div>
+</div>
+<div class="flex items-center group">
+<div class="w-1/4 pr-12 text-right">
+<span class="text-sm font-light text-accent-blue/60 tracking-[0.3em] block mb-2">NOV 02</span>
+<span class="text-xs uppercase tracking-widest opacity-30">14:00 UTC</span>
+</div>
+<div class="relative w-4 h-4 rounded-full border border-mercury-silver/40 flex items-center justify-center bg-deep-ocean z-10 group-hover:scale-125 transition-transform">
+<div class="w-1.5 h-1.5 bg-mercury-silver/50 rounded-full"></div>
+</div>
+<div class="flex-grow pl-12 flex items-center justify-between">
+<div class="max-w-md transform group-hover:translate-x-4 transition-transform duration-500">
+<h4 class="text-2xl font-serif mb-2 tracking-wide">Data Science Summit: UTP Chapter</h4>
+<p class="text-sm font-light text-mercury-silver/40 leading-relaxed">Convergencia de expertos regionales en minería de datos y analítica avanzada.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-3 extreme-glass-btn rounded-sm text-[10px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all">
+                                Inscribirse
+                            </button>
+</div>
+</div>
+</div>
+<div class="flex items-center group">
+<div class="w-1/4 pr-12 text-right">
+<span class="text-sm font-light text-accent-blue/60 tracking-[0.3em] block mb-2">NOV 15</span>
+<span class="text-xs uppercase tracking-widest opacity-30">10:00 UTC</span>
+</div>
+<div class="relative w-4 h-4 rounded-full border border-mercury-silver/40 flex items-center justify-center bg-deep-ocean z-10 group-hover:scale-125 transition-transform">
+<div class="w-1.5 h-1.5 bg-mercury-silver/30 rounded-full"></div>
+</div>
+<div class="flex-grow pl-12 flex items-center justify-between">
+<div class="max-w-md transform group-hover:translate-x-4 transition-transform duration-500">
+<h4 class="text-2xl font-serif mb-2 tracking-wide">Seminario de IA Ética</h4>
+<p class="text-sm font-light text-mercury-silver/40 leading-relaxed">Discusión sobre los marcos regulatorios y responsabilidad en el despliegue de modelos.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-8 py-3 extreme-glass-btn rounded-sm text-[10px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all">
+                                Inscribirse
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="relative z-10 border-t border-white/5 pt-24 pb-12 bg-deep-ocean/80 backdrop-blur-3xl">
+<div class="max-w-7xl mx-auto px-16">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-2 mb-8">
+<span class="material-symbols-outlined text-mercury-silver/60">water_drop</span>
+<span class="font-serif italic text-2xl tracking-tight">ML Laboratory</span>
+</div>
+<p class="text-sm font-light text-mercury-silver/40 leading-relaxed max-w-sm">
+                    Investigación avanzada y desarrollo de soluciones de Inteligencia Artificial para la comunidad universitaria y el ecosistema tecnológico global.
+                </p>
+</div>
+<div>
+<h5 class="text-[10px] uppercase tracking-[0.4em] text-mercury-silver/30 mb-8">Navegación</h5>
+<ul class="space-y-4 text-xs font-light">
+<li><a class="hover:text-white transition-colors" href="#">Investigación</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Dataset Hub</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Laboratorio</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-[10px] uppercase tracking-[0.4em] text-mercury-silver/30 mb-8">Comunidad</h5>
+<ul class="space-y-4 text-xs font-light">
+<li><a class="hover:text-white transition-colors" href="#">GitHub</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Discord</a></li>
+<li><a class="hover:text-white transition-colors" href="#">LinkedIn</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-12 border-t border-white/5">
+<p class="text-[10px] uppercase tracking-[0.3em] text-mercury-silver/20 mb-6 md:mb-0">
+                © 2024 ML Laboratory • DSC UTP • Powered by Intelligence
+            </p>
+<div class="flex items-center gap-6">
+<div class="flex -space-x-3">
+<div class="w-8 h-8 rounded-full border-2 border-deep-ocean bg-slate-800"></div>
+<div class="w-8 h-8 rounded-full border-2 border-deep-ocean bg-slate-700"></div>
+<div class="w-8 h-8 rounded-full border-2 border-deep-ocean bg-slate-600"></div>
+</div>
+<span class="text-[10px] uppercase tracking-[0.3em] text-mercury-silver/30">
+                    12 Investigadores activos
+                </span>
+</div>
+</div>
+</div>
+</footer>
+
+</body></html>

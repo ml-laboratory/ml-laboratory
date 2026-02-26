@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bienvenidos a ML Laboratory</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "mercury-silver": "#E2E8F0",
+                        "liquid-blue": "#0A192F",
+                        "deep-ocean": "#020617",
+                        "glass-white": "rgba(255, 255, 255, 0.05)",
+                    },
+                    fontFamily: {
+                        "serif": ["Playfair Display", "serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --liquid-gradient: linear-gradient(135deg, #94a3b8 0%, #1e293b 50%, #0f172a 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .bg-mesh {
+            background-image: radial-gradient(at 0% 0%, rgba(15, 23, 42, 1) 0, transparent 50%),
+                              radial-gradient(at 100% 0%, rgba(30, 41, 59, 1) 0, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(15, 23, 42, 1) 0, transparent 50%),
+                              radial-gradient(at 0% 100%, rgba(30, 41, 59, 1) 0, transparent 50%);
+        }
+        .node-glow {
+            filter: drop-shadow(0 0 12px rgba(226, 232, 240, 0.5));
+        }
+        .connection-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.2), transparent);
+            height: 2px;
+            pointer-events: none;
+        }
+        .neural-network-bg {
+            background-image: 
+                radial-gradient(circle at 2px 2px, rgba(226, 232, 240, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+    </style>
+</head>
+<body class="bg-deep-ocean font-sans text-mercury-silver min-h-screen selection:bg-mercury-silver selection:text-deep-ocean overflow-x-hidden">
+<div class="fixed inset-0 z-0 bg-mesh opacity-60"></div>
+<div class="fixed inset-0 z-0 neural-network-bg opacity-40"></div>
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="node-glow absolute top-[15%] left-[15%] opacity-40 scale-125"><span class="material-symbols-outlined text-4xl">adjust</span></div>
+<div class="node-glow absolute top-[25%] left-[75%] opacity-50 scale-150"><span class="material-symbols-outlined text-5xl">memory</span></div>
+<div class="node-glow absolute top-[70%] left-[20%] opacity-40 scale-110"><span class="material-symbols-outlined text-3xl">analytics</span></div>
+<div class="node-glow absolute top-[65%] left-[80%] opacity-35 scale-125"><span class="material-symbols-outlined text-6xl">account_tree</span></div>
+<div class="node-glow absolute top-[10%] left-[50%] opacity-40 scale-125"><span class="material-symbols-outlined text-4xl">bubble_chart</span></div>
+<div class="node-glow absolute top-[85%] left-[45%] opacity-30 scale-150"><span class="material-symbols-outlined text-5xl">schema</span></div>
+<div class="connection-line w-[600px] top-[20%] left-[15%] rotate-45 opacity-40"></div>
+<div class="connection-line w-[800px] top-[45%] left-[30%] -rotate-12 opacity-30"></div>
+<div class="connection-line w-[500px] top-[75%] left-[25%] rotate-[110deg] opacity-40"></div>
+<div class="connection-line w-[700px] top-[15%] left-[45%] rotate-3 opacity-30"></div>
+<div class="connection-line w-[400px] top-[60%] left-[70%] rotate-[160deg] opacity-40"></div>
+</div>
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] bg-blue-900/10 blur-[200px] rounded-full z-0"></div>
+<nav class="fixed top-0 w-full z-50 px-10 h-24 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border border-mercury-silver/40 flex items-center justify-center bg-white/5">
+<span class="material-symbols-outlined text-lg">science</span>
+</div>
+<span class="font-serif italic text-xl tracking-wider">ML Laboratory</span>
+</div>
+<div class="hidden md:flex items-center gap-12 text-[11px] uppercase tracking-[0.3em] font-light opacity-70">
+<a class="hover:opacity-100 transition-opacity" href="#">Aprender</a>
+<a class="hover:opacity-100 transition-opacity" href="#">Proyectos</a>
+<a class="hover:opacity-100 transition-opacity" href="#">Comunidad</a>
+</div>
+<button class="px-6 py-2 glass-card rounded-full text-[11px] uppercase tracking-widest hover:bg-white/10 transition-all">
+        Acceder
+    </button>
+</nav>
+<main class="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 pt-20">
+<div class="relative w-full max-w-5xl mx-auto flex flex-col items-center text-center">
+<div class="mb-6 opacity-90">
+<span class="font-sans text-sm uppercase tracking-[0.4em] text-mercury-silver/60">DSC UTP Presenta</span>
+</div>
+<h1 class="text-5xl md:text-8xl font-serif leading-tight mb-6 tracking-tight">
+            Bienvenidos a <br/>
+<span class="italic font-light opacity-90">ML Laboratory</span>
+</h1>
+<h2 class="text-xl md:text-3xl font-serif italic text-mercury-silver/80 mb-10">
+            Donde la Inteligencia Colectiva cobra vida
+        </h2>
+<p class="max-w-2xl text-lg md:text-xl font-light leading-relaxed text-mercury-silver/70 mb-12">
+            No solo teorizamos sobre el futuro de la IA; <span class="text-mercury-silver font-medium">aquí lo construimos</span>. Únete a una comunidad dedicada a materializar el aprendizaje automático en soluciones reales.
+        </p>
+<div class="flex flex-col sm:flex-row items-center gap-8">
+<a class="group relative px-12 py-6 overflow-hidden rounded-full border border-mercury-silver/30 bg-white/5 transition-all hover:border-mercury-silver/60" href="#">
+<span class="relative z-10 text-sm uppercase tracking-[0.2em] font-medium">DA UNA PONENCIA</span>
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+</a>
+<a class="text-sm uppercase tracking-[0.2em] font-light opacity-60 hover:opacity-100 transition-opacity flex items-center gap-2" href="#">
+                EXPLORAR PROYECTOS 
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="absolute bottom-16 left-8 hidden xl:block">
+<div class="glass-card p-7 rounded-2xl w-80 transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+<div class="flex items-center gap-3 mb-4 opacity-50">
+<span class="material-symbols-outlined text-lg">psychology</span>
+<span class="text-[10px] uppercase tracking-widest font-bold">Lo que aprenderás</span>
+</div>
+<h3 class="font-serif italic text-xl mb-3">Deep Learning &amp; Redes Neuronales</h3>
+<p class="text-sm text-mercury-silver/60 leading-relaxed">Domina arquitecturas complejas, desde Transformers hasta CNNs, aplicadas a problemas del mundo real.</p>
+</div>
+</div>
+<div class="absolute top-32 right-8 hidden xl:block">
+<div class="glass-card p-7 rounded-2xl w-80 transform rotate-3 hover:rotate-0 transition-transform duration-500">
+<div class="flex items-center gap-3 mb-4 opacity-50">
+<span class="material-symbols-outlined text-lg">monitoring</span>
+<span class="text-[10px] uppercase tracking-widest font-bold">Lo que aprenderás</span>
+</div>
+<h3 class="font-serif italic text-xl mb-3">Ciencia de Datos Aplicada</h3>
+<p class="text-sm text-mercury-silver/60 leading-relaxed">Convierte datos crudos en conocimiento accionable mediante ingeniería de variables y modelos predictivos robustos.</p>
+</div>
+</div>
+</main>
+<footer class="relative z-10 border-t border-mercury-silver/5 py-12 bg-deep-ocean/50 backdrop-blur-md">
+<div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex gap-12 text-[10px] uppercase tracking-[0.2em] font-light text-mercury-silver/50">
+<span>© 2024 ML Laboratory</span>
+<span>DSC UTP Collective</span>
+<span>Hecho con IA y Código</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex -space-x-3">
+<div class="w-9 h-9 rounded-full border border-mercury-silver/20 bg-liquid-blue overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">person</span>
+</div>
+<div class="w-9 h-9 rounded-full border border-mercury-silver/20 bg-liquid-blue overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">person</span>
+</div>
+<div class="w-9 h-9 rounded-full border border-mercury-silver/20 bg-liquid-blue overflow-hidden flex items-center justify-center">
+<span class="material-symbols-outlined text-xs">person</span>
+</div>
+</div>
+<span class="text-[10px] uppercase tracking-[0.2em] font-light text-mercury-silver/50">8 ponentes activos esta semana</span>
+</div>
+</div>
+</footer>
+
+</body></html>

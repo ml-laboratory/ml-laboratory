@@ -1,26 +1,97 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Deep Ocean Theme Locked (No true Light Mode) */
+    --background: #020617;
+    /* deep-ocean */
+    --foreground: #E2E8F0;
+    /* mercury-silver */
+
+    /* Brand Colors mapped to Stitch UI */
+    --primary: #0A192F;
+    /* liquid-blue */
+    --secondary: #475569;
+    /* subtle slate for borders/muteds */
+    --accent: #38bdf8;
+    /* accent-blue */
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    border-color: color-mix(in srgb, var(--foreground) 10%, transparent);
+    @apply font-sans antialiased overflow-x-hidden selection:bg-foreground selection:text-background;
+  }
+
+  * {
+    border-color: color-mix(in srgb, var(--foreground) 10%, transparent);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom UI Elements from Stitch */
+@layer components {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .bg-mesh {
+    background-image:
+      radial-gradient(at 0% 0%, rgba(15, 23, 42, 0.8) 0, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(30, 41, 59, 0.5) 0, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(10, 25, 47, 0.3) 0, transparent 80%);
+  }
+
+  .liquid-orb {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(148, 163, 184, 0.15) 0%, rgba(10, 25, 47, 0) 70%);
+    filter: blur(40px);
+    z-index: -1;
+  }
+
+  .liquid-accent {
+    background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 50%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .data-stream {
+    background: linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.1), transparent);
+    height: 1px;
+    width: 100%;
+  }
+}
+
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(226, 232, 240, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(226, 232, 240, 0.3);
 }

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ML Lab: Equipo con Fotos Integradas</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "mercury-silver": "#E2E8F0",
+                        "liquid-blue": "#0A192F",
+                        "deep-ocean": "#020617",
+                        "glass-white": "rgba(255, 255, 255, 0.05)",
+                    },
+                    fontFamily: {
+                        "serif": ["Playfair Display", "serif"],
+                        "sans": ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --liquid-gradient: linear-gradient(135deg, #94a3b8 0%, #1e293b 50%, #0f172a 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        .bg-mesh {
+            background-image: radial-gradient(at 0% 0%, rgba(15, 23, 42, 1) 0, transparent 50%),
+                              radial-gradient(at 100% 0%, rgba(30, 41, 59, 1) 0, transparent 50%),
+                              radial-gradient(at 100% 100%, rgba(15, 23, 42, 1) 0, transparent 50%),
+                              radial-gradient(at 0% 100%, rgba(30, 41, 59, 1) 0, transparent 50%);
+        }
+        .liquid-orb {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(148, 163, 184, 0.15) 0%, rgba(10, 25, 47, 0) 70%);
+            filter: blur(40px);
+            z-index: -1;
+        }
+        .photo-gradient-mask {
+            mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-deep-ocean font-sans text-mercury-silver min-h-screen selection:bg-mercury-silver selection:text-deep-ocean overflow-x-hidden">
+<div class="fixed inset-0 z-0 bg-mesh opacity-40"></div>
+<nav class="fixed top-0 w-full z-50 px-6 md:px-12 h-24 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full border border-mercury-silver/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<span class="material-symbols-outlined text-lg">water_drop</span>
+</div>
+<span class="font-serif italic text-xl tracking-wider">ML Lab</span>
+</div>
+<div class="hidden md:flex items-center gap-10 text-[11px] uppercase tracking-[0.3em] font-light opacity-60">
+<a class="hover:opacity-100 transition-opacity" href="#">Inicio</a>
+<a class="hover:opacity-100 transition-opacity" href="#">Nosotros</a>
+<a class="hover:opacity-100 transition-opacity" href="#">Equipo</a>
+<a class="hover:opacity-100 transition-opacity" href="#">Proyectos</a>
+</div>
+<button class="px-7 py-2.5 glass-card rounded-full text-[11px] uppercase tracking-widest hover:bg-white/10 transition-all">
+            Contacto
+        </button>
+</nav>
+<main class="relative z-10 pt-40 pb-32 px-6">
+<section class="max-w-4xl mx-auto text-center mb-40">
+<div class="inline-block mb-6">
+<span class="font-serif italic text-lg text-mercury-silver/50 tracking-wide">— Nuestra Esencia</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-serif mb-10 leading-[1.1]">
+                Sintetizando el futuro de la <br/>
+<span class="italic font-light opacity-80">Inteligencia Colectiva</span>
+</h1>
+<p class="text-lg md:text-xl font-light leading-relaxed text-mercury-silver/70 max-w-2xl mx-auto">
+                Somos una colectividad de IA y Ciencia de Datos en DSC UTP. Nuestra misión es democratizar el conocimiento avanzado, fomentando un entorno de investigación fluida y colaboración orgánica.
+            </p>
+</section>
+<section class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row items-end justify-between mb-20 gap-8">
+<div class="max-w-xl">
+<h2 class="text-4xl md:text-5xl font-serif italic mb-4 font-semibold tracking-tight text-white">El Equipo</h2>
+<p class="text-mercury-silver/50 font-light text-lg">Mentes dedicadas a explorar las fronteras de los algoritmos y la arquitectura de datos.</p>
+</div>
+<div class="text-[11px] uppercase tracking-[0.2em] opacity-40 pb-2">
+                    40+ Colaboradores Activos
+                </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="group relative glass-card rounded-3xl overflow-hidden hover:border-mercury-silver/20 transition-all duration-500 flex flex-col h-full">
+<div class="liquid-orb -top-10 -right-10 group-hover:scale-150 transition-transform duration-700"></div>
+<div class="relative h-64 w-full overflow-hidden">
+<img alt="Carlos Rivera" class="w-full h-full object-cover photo-gradient-mask group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJRXOKCkEO2bgGUdX73YEss8XnH9aOgxBotJEQFbZxIE4H_ML-MOC08ERdRWrlPURySrTPjIB6Ret9iyyK40T9zEDIurclPV7NeWmwRqRmpRR6HdoYbyR4m1-4p3YtHSyrMITOlzRPG-4BJyczQvji0qJShPfPvjYn4TM1_K5wl7QLZqqxe8QkZcb3Q_E8wgxszjhORyERYcmxVp6i0ZjIYwWl-So1d6pMbvyxXOjFKf7rlo2oJHJtVZg5F7KZ1nmxKh9NMeVVKHxH"/>
+</div>
+<div class="p-8 pt-2 flex-grow">
+<h3 class="text-2xl font-serif italic mb-1">Carlos Rivera</h3>
+<p class="text-[10px] uppercase tracking-[0.2em] text-mercury-silver/40 mb-4 font-medium">Lead Researcher</p>
+<p class="text-sm text-mercury-silver/60 font-light leading-relaxed mb-8">Especialista en modelos generativos y procesamiento de lenguaje natural.</p>
+<div class="mt-auto pt-6 border-t border-white/5 flex items-center gap-4">
+<a class="flex items-center gap-2 text-[10px] tracking-widest text-mercury-silver/30 hover:text-mercury-silver transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+                                @crivera_ml
+                            </a>
+</div>
+</div>
+</div>
+<div class="group relative glass-card rounded-3xl overflow-hidden hover:border-mercury-silver/20 transition-all duration-500 flex flex-col h-full">
+<div class="liquid-orb -bottom-10 -left-10 group-hover:scale-150 transition-transform duration-700"></div>
+<div class="relative h-64 w-full overflow-hidden">
+<img alt="Elena Méndez" class="w-full h-full object-cover photo-gradient-mask group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7zDkAuOki9HuFliImdnImVp02f3_xjnT8mwFA1WoSiOZvjHh64hj3_fYT-15GGWsQPkfR4NrrlJ907swYy_SmdMOgFAx6N-g3j0K7dylmL6v1MYaB1ClxDFLlyqlgvgz_g4pBFFcF57xKoh_BzXebjdycXpthwIJvKBDIb_bS5v-4NCgdnBwH-7t9yoTcGdGJhQu_8KBHfV35UoL4yL2Ok0VGDnuUG5w28KHGjLTNnZa3fMfDfXAtYG-f5T_kC52ivWiEjeTRV5vJ"/>
+</div>
+<div class="p-8 pt-2 flex-grow">
+<h3 class="text-2xl font-serif italic mb-1">Elena Méndez</h3>
+<p class="text-[10px] uppercase tracking-[0.2em] text-mercury-silver/40 mb-4 font-medium">Data Scientist</p>
+<p class="text-sm text-mercury-silver/60 font-light leading-relaxed mb-8">Enfocada en el análisis de datos masivos y sistemas de recomendación éticos.</p>
+<div class="mt-auto pt-6 border-t border-white/5 flex items-center gap-4">
+<a class="flex items-center gap-2 text-[10px] tracking-widest text-mercury-silver/30 hover:text-mercury-silver transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+                                @elena.data
+                            </a>
+</div>
+</div>
+</div>
+<div class="group relative glass-card rounded-3xl overflow-hidden hover:border-mercury-silver/20 transition-all duration-500 flex flex-col h-full">
+<div class="liquid-orb -top-20 left-10 group-hover:scale-125 transition-transform duration-700"></div>
+<div class="relative h-64 w-full overflow-hidden">
+<img alt="Mateo Silva" class="w-full h-full object-cover photo-gradient-mask group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDS_mlJpX3Oo1oFOh2l4VkqymV4k7uZe-q-i581J_aEn4ZtOg9oEbWW1O11x0tRIcWO7oBKUR4s383V6W5K7tXnq_xh-MG0dar7vjPi8XZ84tFiKueftiP1GSgAkufwSBLy4UrGN2zW1NEgcaoi2EjCnsQHblviv0oByEBQyqvb46ydIZmheyPqXmWoNgj4aHI1poyAURLY3EsEePfC1SL9rh1lKTDhF1stFI5NXv83H9us5Mq6F0sbt6sJ9uKX_4-Tdl_KdPLjr0fi"/>
+</div>
+<div class="p-8 pt-2 flex-grow">
+<h3 class="text-2xl font-serif italic mb-1">Mateo Silva</h3>
+<p class="text-[10px] uppercase tracking-[0.2em] text-mercury-silver/40 mb-4 font-medium">ML Engineer</p>
+<p class="text-sm text-mercury-silver/60 font-light leading-relaxed mb-8">Arquitecto de despliegue y optimización de redes neuronales en tiempo real.</p>
+<div class="mt-auto pt-6 border-t border-white/5 flex items-center gap-4">
+<a class="flex items-center gap-2 text-[10px] tracking-widest text-mercury-silver/30 hover:text-mercury-silver transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+                                @msilva_dev
+                            </a>
+</div>
+</div>
+</div>
+<div class="group relative glass-card rounded-3xl overflow-hidden hover:border-mercury-silver/20 transition-all duration-500 flex flex-col h-full">
+<div class="liquid-orb -bottom-20 right-10 group-hover:scale-125 transition-transform duration-700"></div>
+<div class="relative h-64 w-full overflow-hidden">
+<img alt="Sofía Vega" class="w-full h-full object-cover photo-gradient-mask group-hover:scale-105 transition-transform duration-700 grayscale hover:grayscale-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbVaEJd3ri1Y26a9zD2sKXwFcJ_NFJULQuC4fXUr3LDZCI9eOaDtq8itWRS1aVEViZ7F1ujpQtWcwnf_tRnP1mQsWrgYlUVw3j2lGK_kR5GG5bEbNEefOV9Wf2ACB2F5zTKJxSiLApntErjVl7VKBSHQCTr5edYGMYNPIGRO7bbc-ARUFLB_T0Qq_mkJufQEOJUJd_BouSSLlmTTQBr3mYlZseK8hqJ5v-62uP0ZaHzvA4Fv9N8dj1Ps1gXg9Avjh0mrC0M6DEj7rk"/>
+</div>
+<div class="p-8 pt-2 flex-grow">
+<h3 class="text-2xl font-serif italic mb-1">Sofía Vega</h3>
+<p class="text-[10px] uppercase tracking-[0.2em] text-mercury-silver/40 mb-4 font-medium">Community Lead</p>
+<p class="text-sm text-mercury-silver/60 font-light leading-relaxed mb-8">Gestora de la colectividad y enlace con el ecosistema global de DSC.</p>
+<div class="mt-auto pt-6 border-t border-white/5 flex items-center gap-4">
+<a class="flex items-center gap-2 text-[10px] tracking-widest text-mercury-silver/30 hover:text-mercury-silver transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+                                @sofia_vga
+                            </a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-5xl mx-auto mt-40 text-center">
+<div class="glass-card p-12 md:p-20 rounded-[3rem] border-white/5 relative overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent"></div>
+<div class="relative z-10">
+<h2 class="text-4xl font-serif italic mb-8">¿Listo para contribuir?</h2>
+<p class="text-mercury-silver/60 mb-12 max-w-lg mx-auto font-light leading-relaxed">
+                        Buscamos mentes curiosas apasionadas por los datos. Únete a nuestra próxima sesión o presenta tu investigación.
+                    </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="px-10 py-5 bg-white text-deep-ocean rounded-full text-sm uppercase tracking-widest font-medium hover:bg-mercury-silver transition-colors">
+                            Sé ponente
+                        </button>
+<button class="px-10 py-5 glass-card rounded-full text-sm uppercase tracking-widest font-light hover:bg-white/10 transition-all">
+                            Saber más
+                        </button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="relative z-10 border-t border-white/5 py-12">
+<div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-10">
+<div class="flex items-center gap-3 opacity-40">
+<span class="text-[10px] uppercase tracking-[0.3em] font-light">© 2024 ML Laboratory</span>
+<span class="w-1 h-1 rounded-full bg-mercury-silver/30"></span>
+<span class="text-[10px] uppercase tracking-[0.3em] font-light">DSC UTP Collective</span>
+</div>
+<div class="flex gap-10">
+<a class="text-[10px] uppercase tracking-[0.2em] font-light opacity-40 hover:opacity-100 transition-opacity" href="#">Twitter</a>
+<a class="text-[10px] uppercase tracking-[0.2em] font-light opacity-40 hover:opacity-100 transition-opacity" href="#">GitHub</a>
+<a class="text-[10px] uppercase tracking-[0.2em] font-light opacity-40 hover:opacity-100 transition-opacity" href="#">LinkedIn</a>
+</div>
+</div>
+</footer>
+
+</body></html>
