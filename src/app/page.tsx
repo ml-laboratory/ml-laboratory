@@ -6,10 +6,12 @@ import TeamSection from "@/components/sections/TeamSection";
 import ProjectsCarousel from "@/components/sections/ProjectsCarousel";
 import EventsSection from "@/components/sections/EventsSection";
 import ContactSection from "@/components/sections/ContactSection";
+import AnimatedBackground from "@/components/AnimatedBackground";
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col relative">
+      <AnimatedBackground />
       <Navbar />
 
       <HeroSection />

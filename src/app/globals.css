@@ -6,25 +6,22 @@
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
   --color-accent: var(--accent);
+  --color-deep-ocean: #020617;
+  --color-mercury-silver: #E2E8F0;
+  --color-liquid-blue: #0A192F;
+  --color-accent-blue: #38bdf8;
   --font-serif: var(--font-playfair);
   --font-sans: var(--font-inter);
 }
 
 @layer base {
   :root {
-    /* Deep Ocean Theme Locked (No true Light Mode) */
+    /* Deep Ocean Theme Locked */
     --background: #020617;
-    /* deep-ocean */
     --foreground: #E2E8F0;
-    /* mercury-silver */
-
-    /* Brand Colors mapped to Stitch UI */
     --primary: #0A192F;
-    /* liquid-blue */
     --secondary: #475569;
-    /* subtle slate for borders/muteds */
     --accent: #38bdf8;
-    /* accent-blue */
   }
 
   body {
@@ -39,13 +36,21 @@
   }
 }
 
-/* Custom UI Elements from Stitch */
+/* Custom UI Elements from Stitch Designs */
 @layer components {
   .glass-card {
     background: rgba(255, 255, 255, 0.03);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card-strong {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   }
 
   .bg-mesh {
@@ -63,6 +68,7 @@
     background: radial-gradient(circle, rgba(148, 163, 184, 0.15) 0%, rgba(10, 25, 47, 0) 70%);
     filter: blur(40px);
     z-index: -1;
+    animation: float-orb 8s ease-in-out infinite;
   }
 
   .liquid-accent {
@@ -75,6 +81,197 @@
     background: linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.1), transparent);
     height: 1px;
     width: 100%;
+  }
+
+  /* Neural Network Background */
+  .neural-network-bg {
+    background-image:
+      radial-gradient(circle at 2px 2px, rgba(226, 232, 240, 0.05) 1px, transparent 0);
+    background-size: 40px 40px;
+  }
+
+  /* Node Glow */
+  .node-glow {
+    filter: drop-shadow(0 0 12px rgba(226, 232, 240, 0.5));
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+
+  /* Connection Lines */
+  .connection-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(226, 232, 240, 0.2), transparent);
+    height: 2px;
+    pointer-events: none;
+    animation: shimmer-line 6s ease-in-out infinite;
+  }
+
+  /* Glass Inputs */
+  .glass-input {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    color: #E2E8F0;
+  }
+
+  .glass-input:focus {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    outline: none;
+    box-shadow: 0 0 30px rgba(148, 163, 184, 0.12), 0 0 60px rgba(56, 189, 248, 0.05);
+  }
+
+  .glass-input::placeholder {
+    color: rgba(226, 232, 240, 0.25);
+  }
+
+  /* Particle Stream */
+  .particle-stream {
+    background-image: radial-gradient(circle, rgba(226, 232, 240, 0.15) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  }
+
+  /* Photo Gradient Mask */
+  .photo-gradient-mask {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+
+  /* Sidebar Divider */
+  .sidebar-divider {
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(226, 232, 240, 0.2), transparent);
+  }
+
+  /* Liquid Glow Background */
+  .liquid-glow {
+    background: radial-gradient(circle at center, rgba(148, 163, 184, 0.08) 0%, transparent 70%);
+  }
+
+  /* Shimmer Button Effect */
+  .btn-shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+    transform: translateX(-100%);
+    transition: transform 0s;
+  }
+
+  .btn-shimmer:hover::after {
+    transform: translateX(100%);
+    transition: transform 1s ease;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes float-orb {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.05);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    filter: drop-shadow(0 0 8px rgba(226, 232, 240, 0.3));
+  }
+
+  50% {
+    opacity: 0.6;
+    filter: drop-shadow(0 0 20px rgba(226, 232, 240, 0.6));
+  }
+}
+
+@keyframes shimmer-line {
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes float-slow {
+
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+
+  25% {
+    transform: translateY(-15px) translateX(8px);
+  }
+
+  50% {
+    transform: translateY(-8px) translateX(-5px);
+  }
+
+  75% {
+    transform: translateY(-20px) translateX(3px);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(10px, -10px) rotate(1deg);
+  }
+
+  66% {
+    transform: translate(-5px, 5px) rotate(-1deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes neural-pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes glow-breathe {
+
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(226, 232, 240, 0.05);
+  }
+
+  50% {
+    box-shadow: 0 0 30px rgba(226, 232, 240, 0.15), 0 0 60px rgba(56, 189, 248, 0.05);
   }
 }
 
@@ -94,4 +291,16 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: rgba(226, 232, 240, 0.3);
+}
+
+/* Responsive utility animation adjustments */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

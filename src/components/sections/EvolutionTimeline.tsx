@@ -49,39 +49,42 @@ export default function EvolutionTimeline() {
         offset: ["start center", "end center"]
     });
 
-    // Calculate the height of the active line based on scroll
     const lineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
     return (
-        <section ref={containerRef} className="relative py-32 z-10" id="about">
+        <section ref={containerRef} className="relative py-20 md:py-32 z-10" id="about">
+            <div className="max-w-4xl mx-auto px-4 sm:px-8 md:px-16 relative z-10">
 
-            <div className="max-w-4xl mx-auto px-8 md:px-16 relative z-10">
-
-                <div className="text-center mb-24">
+                <div className="text-center mb-16 md:mb-24">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        transition={{ duration: 0.8 }}
                     >
-                        <h2 className="text-xs uppercase tracking-[0.5em] text-mercury-silver/40 mb-4">Metodología</h2>
-                        <h3 className="text-4xl md:text-5xl font-serif italic mb-6">Nuestra Filosofía</h3>
-                        <p className="text-mercury-silver/60 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+                        <h2 className="text-xs uppercase tracking-[0.5em] text-foreground/40 mb-4">Metodología</h2>
+                        <h3 className="text-3xl sm:text-4xl md:text-5xl font-serif italic mb-6">Nuestra Filosofía</h3>
+                        <p className="text-foreground/60 max-w-2xl mx-auto text-base md:text-lg font-light leading-relaxed px-2">
                             Acompañanos en el ciclo de vida de los datos, desde la captura cruda hasta la síntesis de inteligencia avanzada.
                         </p>
                     </motion.div>
                 </div>
 
                 <div className="relative">
-                    {/* Main Background Line */}
-                    <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-[1px] bg-mercury-silver/10 -translate-x-1/2" />
+                    {/* Background Line */}
+                    <div className="absolute left-[28px] md:left-1/2 top-0 bottom-0 w-[1px] bg-foreground/10 -translate-x-1/2" />
 
-                    {/* Animated Line */}
+                    {/* Animated Glowing Line */}
                     <motion.div
-                        className="absolute left-[28px] md:left-1/2 top-0 w-[1px] bg-mercury-silver/60 -translate-x-1/2 origin-top"
-                        style={{ height: lineHeight }}
+                        className="absolute left-[28px] md:left-1/2 top-0 w-[2px] -translate-x-1/2 origin-top"
+                        style={{
+                            height: lineHeight,
+                            background: "linear-gradient(to bottom, rgba(56, 189, 248, 0.4), rgba(226, 232, 240, 0.6))",
+                            boxShadow: "0 0 12px rgba(56, 189, 248, 0.3), 0 0 30px rgba(56, 189, 248, 0.1)",
+                        }}
                     />
 
-                    <div className="flex flex-col gap-12 md:gap-24">
+                    <div className="flex flex-col gap-8 md:gap-24">
                         {timelineEvents.map((event, index) => {
                             const isEven = index % 2 === 0;
                             return (
@@ -94,14 +97,13 @@ export default function EvolutionTimeline() {
                             );
                         })}
                     </div>
-
                 </div>
             </div>
         </section>
     );
 }
 
-function TimelineItem({ event, index, isEven }: { event: any, index: number, isEven: boolean }) {
+function TimelineItem({ event, index, isEven }: { event: typeof timelineEvents[0], index: number, isEven: boolean }) {
     const itemRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: itemRef,
@@ -116,39 +118,48 @@ function TimelineItem({ event, index, isEven }: { event: any, index: number, isE
     return (
         <div ref={itemRef} className={`relative flex items-center justify-start md:justify-between w-full group ${isEven ? 'md:flex-row-reverse' : ''}`}>
 
-            {/* Node (Center mostly on desktop, left on mobile) */}
+            {/* Node with animated glow */}
             <div className="absolute left-[28px] md:left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
                 <motion.div
                     style={{ scale, opacity }}
-                    className={`w-14 h-14 rounded-full border border-mercury-silver/20 bg-deep-ocean flex items-center justify-center transition-all duration-300 group-hover:border-mercury-silver/60`}
+                    className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-foreground/20 bg-background flex items-center justify-center transition-all duration-300 group-hover:border-accent/60 group-hover:shadow-[0_0_20px_rgba(56,189,248,0.2)]"
                 >
-                    <span className="material-symbols-outlined text-mercury-silver/70 font-thin">{event.icon}</span>
+                    <motion.span
+                        className="material-symbols-outlined text-foreground/70 font-thin"
+                        whileHover={{ rotate: 180 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        {event.icon}
+                    </motion.span>
                 </motion.div>
             </div>
 
-            {/* spacer for alternate layout on desktop */}
+            {/* Spacer for desktop */}
             <div className="hidden md:block w-1/2 relative px-8" />
 
             {/* Content Card */}
             <motion.div
                 style={{ opacity, x }}
-                className="w-full pl-20 md:pl-0 md:w-1/2 md:px-12"
+                className="w-full pl-16 md:pl-0 md:w-1/2 md:px-12"
             >
-                <div className="glass-card rounded-3xl p-8 relative overflow-hidden group-hover:border-mercury-silver/30 transition-colors duration-500">
-                    <div className={`liquid-orb ${event.orbPos} opacity-0 group-hover:opacity-40 transition-opacity duration-1000 scale-150`}></div>
+                <motion.div
+                    className="glass-card rounded-2xl md:rounded-3xl p-6 md:p-8 relative overflow-hidden group-hover:border-foreground/20 transition-all duration-500"
+                    whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                    style={{ animation: "glow-breathe 4s ease-in-out infinite" }}
+                >
+                    <div className={`liquid-orb ${event.orbPos} opacity-0 group-hover:opacity-40 transition-opacity duration-1000 scale-150`} />
 
-                    <span className="inline-block px-4 py-1.5 rounded-full border border-mercury-silver/10 text-[10px] uppercase tracking-widest text-mercury-silver/60 mb-6">
+                    <span className="inline-block px-3 md:px-4 py-1 md:py-1.5 rounded-full border border-foreground/10 text-[10px] uppercase tracking-widest text-foreground/60 mb-4 md:mb-6">
                         {event.year}
                     </span>
-                    <h3 className="text-2xl font-serif mb-4">
+                    <h3 className="text-xl md:text-2xl font-serif mb-3 md:mb-4">
                         {event.title}
                     </h3>
-                    <p className="text-mercury-silver/60 font-light leading-relaxed text-sm">
+                    <p className="text-foreground/60 font-light leading-relaxed text-xs md:text-sm">
                         {event.description}
                     </p>
-                </div>
+                </motion.div>
             </motion.div>
-
         </div>
     );
 }

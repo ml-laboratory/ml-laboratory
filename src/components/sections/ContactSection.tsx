@@ -2,74 +2,118 @@
 
 import { motion } from "framer-motion";
 
+const contactInfo = [
+    { icon: "alternate_email", title: "Email", value: "mllab@utp.edu.co" },
+    { icon: "location_on", title: "Ubicación", value: "DSC UTP, Edificio 15" },
+    { icon: "share", title: "Redes", value: "@mllab_dscutp" },
+];
+
 export default function ContactSection() {
     return (
-        <section id="contact" className="py-24 relative overflow-hidden z-10">
-            <div className="max-w-7xl mx-auto px-8 md:px-16 flex flex-col lg:flex-row gap-16 items-center">
+        <section id="contact" className="py-16 md:py-24 relative overflow-hidden z-10">
+            {/* Ambient glows */}
+            <div className="absolute -top-20 -left-20 w-64 md:w-96 h-64 md:h-96 bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute -bottom-20 -right-20 w-80 md:w-[500px] h-80 md:h-[500px] bg-slate-800/10 blur-[150px] rounded-full pointer-events-none" />
 
-                <div className="flex-1 text-center lg:text-left">
-                    <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                    >
-                        <h2 className="text-4xl md:text-6xl font-serif italic mb-6">
-                            ¿Quieres dar una <br />
-                            <span className="text-mercury-silver opacity-90">ponencia?</span>
-                        </h2>
-                    </motion.div>
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-16 w-full">
+                {/* Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="text-center mb-10 md:mb-16"
+                >
+                    <span className="font-serif italic text-base md:text-xl text-foreground/60 block mb-3 md:mb-4">Colabora con el Colectivo</span>
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif mb-4 md:mb-6 tracking-tight">
+                        Contacto y <br />
+                        <span className="italic font-light opacity-80">Colaboración</span>
+                    </h1>
+                    <p className="max-w-2xl mx-auto text-sm md:text-lg font-light leading-relaxed text-foreground/60 px-2">
+                        Buscamos mentes apasionadas. Ya sea para dar una ponencia, presentar una investigación o proponer un proyecto conjunto, las puertas de ML Lab están abiertas.
+                    </p>
+                </motion.div>
 
-                    <motion.p
-                        initial={{ opacity: 0, x: -30 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-lg text-mercury-silver/60 mb-8 max-w-lg mx-auto lg:mx-0 font-light leading-relaxed"
-                    >
-                        Buscamos constantemente mentes dispuestas a compartir su conocimiento con los chicos. Si tienes un caso de estudio, un research o un proyecto interesante, ¡escríbenos!
-                    </motion.p>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="inline-flex items-center gap-3 text-mercury-silver font-light bg-white/5 border border-mercury-silver/10 px-8 py-4 rounded-full"
-                    >
-                        <span className="material-symbols-outlined text-sm">mail</span>
-                        hello@mllab.dev
-                    </motion.div>
-                </div>
-
+                {/* Form Card */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.95 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    className="flex-1 w-full max-w-md glass-card p-10 rounded-3xl"
+                    transition={{ duration: 0.8 }}
+                    className="glass-card p-6 sm:p-8 md:p-12 rounded-[1.5rem] md:rounded-[2rem] relative overflow-hidden"
                 >
-                    <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
-                        <div className="flex flex-col gap-3">
-                            <label htmlFor="name" className="text-[10px] uppercase tracking-widest text-mercury-silver/60">Nombre Completo</label>
-                            <input type="text" id="name" className="bg-transparent border-b border-mercury-silver/20 py-3 focus:outline-none focus:border-mercury-silver transition-colors text-mercury-silver placeholder:text-mercury-silver/20 font-light" placeholder="Ada Lovelace" />
+                    <div className="absolute inset-0 liquid-glow pointer-events-none" />
+
+                    <form className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8" onSubmit={(e) => e.preventDefault()}>
+                        <div className="flex flex-col gap-2">
+                            <label htmlFor="nombre" className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-50 ml-2">Nombre Completo</label>
+                            <input
+                                type="text"
+                                id="nombre"
+                                className="glass-input rounded-xl px-4 py-3"
+                                placeholder="Isaac Newton"
+                            />
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <label htmlFor="email" className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-50 ml-2">Email Académico / Profesional</label>
+                            <input
+                                type="email"
+                                id="email"
+                                className="glass-input rounded-xl px-4 py-3"
+                                placeholder="investigador@utp.edu.co"
+                            />
                         </div>
 
-                        <div className="flex flex-col gap-3">
-                            <label htmlFor="email" className="text-[10px] uppercase tracking-widest text-mercury-silver/60">Correo Electrónico</label>
-                            <input type="email" id="email" className="bg-transparent border-b border-mercury-silver/20 py-3 focus:outline-none focus:border-mercury-silver transition-colors text-mercury-silver placeholder:text-mercury-silver/20 font-light" placeholder="ada@example.com" />
+                        <div className="flex flex-col gap-2 md:col-span-2">
+                            <label htmlFor="interes" className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-50 ml-2">Área de Interés</label>
+                            <select
+                                id="interes"
+                                className="glass-input rounded-xl px-4 py-3 appearance-none bg-transparent"
+                            >
+                                <option className="bg-background" value="ponencia">Dar una ponencia</option>
+                                <option className="bg-background" value="colaboracion">Colaboración en Investigación</option>
+                                <option className="bg-background" value="visita">Visita Técnica</option>
+                                <option className="bg-background" value="otro">Otros</option>
+                            </select>
                         </div>
 
-                        <div className="flex flex-col gap-3 mb-4">
-                            <label htmlFor="topic" className="text-[10px] uppercase tracking-widest text-mercury-silver/60">Tema de Ponencia / Interés</label>
-                            <textarea id="topic" rows={3} className="bg-transparent border-b border-mercury-silver/20 py-3 focus:outline-none focus:border-mercury-silver transition-colors text-mercury-silver placeholder:text-mercury-silver/20 font-light resize-none" placeholder="Cuéntanos brevemente sobre qué te gustaría hablar..." />
+                        <div className="flex flex-col gap-2 md:col-span-2">
+                            <label htmlFor="mensaje" className="text-[10px] uppercase tracking-[0.2em] font-medium opacity-50 ml-2">Propuesta o Mensaje</label>
+                            <textarea
+                                id="mensaje"
+                                className="glass-input rounded-xl px-4 py-3 min-h-[120px] md:min-h-[150px] resize-none"
+                                placeholder="Cuéntanos sobre tu investigación o el tema que te gustaría compartir..."
+                            />
                         </div>
 
-                        <button type="submit" className="mt-2 flex items-center justify-center gap-3 w-full py-5 bg-mercury-silver hover:bg-white text-deep-ocean rounded-full text-xs uppercase tracking-[0.2em] font-bold transition-colors">
-                            Enviar Mensaje
-                            <span className="material-symbols-outlined text-sm">send</span>
-                        </button>
+                        <div className="md:col-span-2 flex justify-center mt-2 md:mt-4">
+                            <button
+                                type="submit"
+                                className="btn-shimmer group relative px-10 md:px-12 py-4 overflow-hidden rounded-full border border-foreground/20 bg-white/5 transition-all hover:border-foreground/50 w-full md:w-auto"
+                            >
+                                <span className="relative z-10 text-xs md:text-sm uppercase tracking-[0.2em] font-medium">Enviar Propuesta</span>
+                            </button>
+                        </div>
                     </form>
                 </motion.div>
 
+                {/* Contact Info Cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mt-8 md:mt-12">
+                    {contactInfo.map((info, i) => (
+                        <motion.div
+                            key={info.title}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.1, duration: 0.6 }}
+                            whileHover={{ y: -4, transition: { duration: 0.3 } }}
+                            className="glass-card p-5 md:p-6 rounded-2xl flex flex-col items-center text-center cursor-default"
+                        >
+                            <span className="material-symbols-outlined mb-2 md:mb-3 opacity-40">{info.icon}</span>
+                            <h3 className="text-xs uppercase tracking-widest mb-1">{info.title}</h3>
+                            <p className="text-sm font-light opacity-70 italic">{info.value}</p>
+                        </motion.div>
+                    ))}
+                </div>
             </div>
         </section>
     );

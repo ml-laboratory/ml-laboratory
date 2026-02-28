@@ -2,6 +2,7 @@ import { Composition, registerRoot } from "remotion";
 import { BranchesVideo } from "./BranchesVideo";
 import { MLLab3DLogo } from "./MLLab3DLogo";
 import { MLLabLogoAnimation } from "./MLLabLogoAnimation";
+import { NeuralParticles } from "./NeuralParticles";
 
 export const RemotionRoot: React.FC = () => {
     return (
@@ -25,6 +26,14 @@ export const RemotionRoot: React.FC = () => {
             <Composition
                 id="NetworkSVG"
                 component={MLLabLogoAnimation}
+                durationInFrames={600}
+                fps={30}
+                width={1080}
+                height={1080}
+            />
+            <Composition
+                id="NeuralParticles"
+                component={NeuralParticles}
                 durationInFrames={600}
                 fps={30}
                 width={1080}
