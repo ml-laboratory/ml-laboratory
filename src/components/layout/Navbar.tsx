@@ -12,9 +12,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 const navLinks = [
-    { name: "Aprender", href: "#about" },
-    { name: "Proyectos", href: "#proyectos" },
-    { name: "Comunidad", href: "#team" },
+    { name: "Aprender", href: "/#about" },
+    { name: "Proyectos", href: "/#proyectos" },
+    { name: "Comunidad", href: "/#team" },
+    { name: "Blog", href: "/blog" },
 ];
 
 export default function Navbar() {
@@ -71,7 +72,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.7 }}
-                        href="#contact"
+                        href="/#contact"
                         className="px-6 xl:px-8 py-2.5 glass-card rounded-full text-[10px] uppercase tracking-[0.2em] hover:bg-white/5 transition-all hover:border-white/20"
                     >
                         Acceder
@@ -109,7 +110,7 @@ export default function Navbar() {
                             </Link>
                         ))}
                         <a
-                            href="#contact"
+                            href="/#contact"
                             onClick={() => setIsMobileMenuOpen(false)}
                             className="inline-block mt-2 px-8 py-3 glass-card rounded-full text-center hover:bg-white/5 transition-all text-foreground text-[11px] uppercase tracking-[0.2em]"
                         >

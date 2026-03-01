@@ -1,38 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { SanityEvent } from "@/lib/sanity.types";
+import { formatEventDate } from "@/lib/format";
 
-const events = [
-    {
-        date: "OCT 24",
-        time: "18:00 UTC",
-        title: "Workshop: Redes Neuronales Líquidas",
-        description: "Exploración profunda sobre arquitecturas adaptativas inspiradas en modelos biológicos.",
-        location: "Auditorio Central",
-        tag: "Inteligencia Artificial",
-        isPrimary: true,
-    },
-    {
-        date: "NOV 02",
-        time: "14:00 UTC",
-        title: "Data Science Summit: UTP Chapter",
-        description: "Convergencia de expertos regionales en minería de datos y analítica avanzada.",
-        location: "Modalidad Virtual",
-        tag: "Data Analytics",
-        isPrimary: false,
-    },
-    {
-        date: "NOV 15",
-        time: "10:00 UTC",
-        title: "Seminario de IA Ética",
-        description: "Discusión sobre los marcos regulatorios y responsabilidad en el despliegue de modelos.",
-        location: "Sala 305",
-        tag: "Ética en IA",
-        isPrimary: false,
-    },
-];
+type EventsSectionProps = {
+    events: SanityEvent[];
+};
 
-export default function EventsSection() {
+export default function EventsSection({ events }: EventsSectionProps) {
     return (
         <section id="eventos" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 md:px-16 py-16 md:py-32">
             {/* Background particles */}
@@ -54,9 +30,14 @@ export default function EventsSection() {
                 <div className="absolute left-[25%] top-0 bottom-0 sidebar-divider hidden md:block z-0" />
 
                 <div className="relative space-y-8 md:space-y-20 max-w-5xl mx-auto">
+                    {events.length === 0 && (
+                        <div className="glass-card rounded-3xl p-8 md:p-12 text-center text-foreground/60 font-light">
+                            Aun no hay eventos publicados. Vuelve pronto para nuevas convocatorias.
+                        </div>
+                    )}
                     {events.map((event, i) => (
                         <motion.div
-                            key={i}
+                            key={event._id}
                             initial={{ opacity: 0, x: 40 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -65,8 +46,12 @@ export default function EventsSection() {
                         >
                             {/* Date - Side */}
                             <div className="md:w-1/4 md:pr-12 text-left md:text-right mb-3 md:mb-0 relative z-10 w-full">
-                                <span className="text-sm font-light text-accent/60 tracking-[0.3em] block mb-1 md:mb-2">{event.date}</span>
-                                <span className="text-xs uppercase tracking-widest opacity-30">{event.time}</span>
+                                <span className="text-sm font-light text-accent/60 tracking-[0.3em] block mb-1 md:mb-2">
+                                    {formatEventDate(event.date)}
+                                </span>
+                                <span className="text-xs uppercase tracking-widest opacity-30">
+                                    {event.timeLabel || "Hora por confirmar"}
+                                </span>
                             </div>
 
                             {/* Timeline Node — desktop only */}
@@ -96,17 +81,31 @@ export default function EventsSection() {
                                         <div className="flex flex-wrap items-center gap-3 md:gap-4 text-[10px] uppercase tracking-widest text-foreground/50">
                                             <span className="flex items-center gap-1">
                                                 <span className="material-symbols-outlined text-sm">location_on</span>
-                                                {event.location}
+                                                {event.location || ""}
                                             </span>
-                                            <span className="px-3 py-1 border border-white/10 rounded-full">{event.tag}</span>
+                                            <span className="px-3 py-1 border border-white/10 rounded-full">{event.tag || ""}</span>
                                         </div>
                                     </div>
-                                    <button className={`shrink-0 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-[10px] uppercase tracking-[0.2em] transition-all w-full sm:w-auto text-center ${event.isPrimary
-                                        ? 'bg-white text-background font-bold hover:bg-foreground shadow-[0_0_20px_rgba(255,255,255,0.15)]'
-                                        : 'glass-card font-light hover:bg-white/5'
-                                        }`}>
-                                        {event.isPrimary ? "Inscribirse" : "Saber más"}
-                                    </button>
+                                    {event.ctaUrl ? (
+                                        <a
+                                            href={event.ctaUrl}
+                                            className={`shrink-0 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-[10px] uppercase tracking-[0.2em] transition-all w-full sm:w-auto text-center ${event.isPrimary
+                                                ? 'bg-white text-background font-bold hover:bg-foreground shadow-[0_0_20px_rgba(255,255,255,0.15)]'
+                                                : 'glass-card font-light hover:bg-white/5'
+                                                }`}
+                                        >
+                                            {event.ctaLabel || (event.isPrimary ? "Inscribirse" : "Saber más")}
+                                        </a>
+                                    ) : (
+                                        <button
+                                            className={`shrink-0 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-[10px] uppercase tracking-[0.2em] transition-all w-full sm:w-auto text-center ${event.isPrimary
+                                                ? 'bg-white text-background font-bold hover:bg-foreground shadow-[0_0_20px_rgba(255,255,255,0.15)]'
+                                                : 'glass-card font-light hover:bg-white/5'
+                                                }`}
+                                        >
+                                            {event.ctaLabel || (event.isPrimary ? "Inscribirse" : "Saber más")}
+                                        </button>
+                                    )}
                                 </div>
                             </motion.div>
                         </motion.div>

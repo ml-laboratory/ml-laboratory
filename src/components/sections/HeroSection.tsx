@@ -88,7 +88,7 @@ export default function HeroSection() {
                 >
                     No solo teorizamos sobre el futuro de la IA;{" "}
                     <span className="text-foreground font-medium">aquí lo construimos</span>.
-                    Únete a una comunidad dedicada a materializar el aprendizaje automático en soluciones reales.
+                    Únete a la comunidad dedicada a materializar el aprendizaje automático en soluciones reales.
                 </motion.p>
 
                 {/* CTAs */}

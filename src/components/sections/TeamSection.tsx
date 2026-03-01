@@ -29,7 +29,7 @@ const team = [
     {
         name: "Sofía Vega",
         role: "Community Lead",
-        description: "Gestora de la colectividad y enlace con el ecosistema global de DSC.",
+        description: "Gestora de la colectividad y enlace con el ecosistema global del DSC.",
         image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&h=500&auto=format&fit=crop",
         handle: "@sofia_vga"
     },
@@ -186,7 +186,7 @@ export default function TeamSection() {
                         <span className="text-[10px] uppercase tracking-[0.4em] text-accent mb-4 block">Convocatoria Abierta</span>
                         <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif italic mb-4 md:mb-6">¿Listo para contribuir?</h2>
                         <p className="max-w-lg mx-auto text-foreground/60 font-light leading-relaxed mb-6 md:mb-10 text-sm md:text-base px-2">
-                            Buscamos mentes curiosas apasionadas por los datos. Únete a nuestra próxima sesión o presenta tu investigación.
+                            Buscamos mentes curiosas apasionadas por los datos. Sé parte del DSC: únete a nuestra próxima sesión o presenta tu investigación.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
                             <button className="btn-shimmer px-8 md:px-10 py-4 md:py-5 bg-white text-background rounded-full text-xs md:text-sm uppercase tracking-widest font-medium hover:bg-foreground transition-colors">

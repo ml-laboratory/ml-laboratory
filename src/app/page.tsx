@@ -7,8 +7,12 @@ import ProjectsCarousel from "@/components/sections/ProjectsCarousel";
 import EventsSection from "@/components/sections/EventsSection";
 import ContactSection from "@/components/sections/ContactSection";
 import AnimatedBackground from "@/components/AnimatedBackground";
+import BlogTeaserSection from "@/components/sections/BlogTeaserSection";
+import { getEvents, getLatestPosts } from "@/lib/sanity.queries";
 
-export default function Home() {
+export default async function Home() {
+  const [events, latestPosts] = await Promise.all([getEvents(), getLatestPosts(2)]);
+
   return (
     <main className="min-h-screen bg-background text-foreground flex flex-col relative">
       <AnimatedBackground />
@@ -18,7 +22,8 @@ export default function Home() {
       <EvolutionTimeline />
       <TeamSection />
       <ProjectsCarousel />
-      <EventsSection />
+      <BlogTeaserSection posts={latestPosts} />
+      <EventsSection events={events} />
       <ContactSection />
 
       <Footer />
