@@ -1,17 +1,45 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Player } from "@remotion/player";
+import { motion, useReducedMotion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { NeuralParticles } from "@/remotion/NeuralParticles";
 import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
+const RemotionPlayer = dynamic(() => import("@remotion/player").then((mod) => mod.Player), {
+    ssr: false,
+});
+
 export default function HeroSection() {
     const [isMounted, setIsMounted] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
+    const prefersReducedMotion = useReducedMotion();
 
     useEffect(() => {
         setIsMounted(true);
+        const mediaQuery = window.matchMedia("(min-width: 768px)");
+        const update = () => setIsDesktop(mediaQuery.matches);
+        update();
+        mediaQuery.addEventListener("change", update);
+        return () => mediaQuery.removeEventListener("change", update);
     }, []);
+
+    const allowMotion = !prefersReducedMotion && isDesktop;
+    const preHeaderMotion = allowMotion
+        ? ({ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, ease: "easeOut" as const } } as const)
+        : {};
+    const titleMotion = allowMotion
+        ? ({ initial: { opacity: 0, y: 30 }, animate: { opacity: 1, y: 0 }, transition: { duration: 1, delay: 0.2, type: "spring" as const, stiffness: 100 } } as const)
+        : {};
+    const subtitleMotion = allowMotion
+        ? ({ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, delay: 0.4 } } as const)
+        : {};
+    const bodyMotion = allowMotion
+        ? ({ initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 1, delay: 0.6 } } as const)
+        : {};
+    const ctaMotion = allowMotion
+        ? ({ initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.8, delay: 0.8 } } as const)
+        : {};
 
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 md:pt-32 pb-16 md:pb-24 px-4 sm:px-8 md:px-16" id="inicio">
@@ -20,9 +48,9 @@ export default function HeroSection() {
             <div className="absolute inset-0 z-0 bg-mesh opacity-40 pointer-events-none" />
 
             {/* Remotion Neural Particles Background */}
-            {isMounted && (
+            {isMounted && allowMotion && (
                 <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-30 md:opacity-40 mix-blend-screen">
-                    <Player
+                    <RemotionPlayer
                         component={NeuralParticles}
                         durationInFrames={600}
                         fps={30}
@@ -47,12 +75,7 @@ export default function HeroSection() {
             <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center">
 
                 {/* Pre-header tag */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="mb-4 md:mb-6"
-                >
+                <motion.div {...preHeaderMotion} className="mb-4 md:mb-6">
                     <span className="font-sans text-xs sm:text-sm uppercase tracking-[0.4em] text-foreground/40">
                         DSC UTP Presenta
                     </span>
@@ -60,9 +83,7 @@ export default function HeroSection() {
 
                 {/* Main title */}
                 <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, delay: 0.2, type: "spring", stiffness: 100 }}
+                    {...titleMotion}
                     className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif leading-tight mb-4 md:mb-6 tracking-tight"
                 >
                     Bienvenidos a <br />
@@ -71,9 +92,7 @@ export default function HeroSection() {
 
                 {/* Subtitle */}
                 <motion.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
+                    {...subtitleMotion}
                     className="text-lg sm:text-xl md:text-3xl font-serif italic text-foreground/70 mb-6 md:mb-10"
                 >
                     Donde la Inteligencia Colectiva cobra vida
@@ -81,9 +100,7 @@ export default function HeroSection() {
 
                 {/* Description */}
                 <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.6 }}
+                    {...bodyMotion}
                     className="max-w-2xl text-sm sm:text-base md:text-xl font-light leading-relaxed text-foreground/60 mb-8 md:mb-12 px-2"
                 >
                     No solo teorizamos sobre el futuro de la IA;{" "}
@@ -92,12 +109,7 @@ export default function HeroSection() {
                 </motion.p>
 
                 {/* CTAs */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.8 }}
-                    className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8"
-                >
+                <motion.div {...ctaMotion} className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
                     <a
                         href="#contact"
                         className="btn-shimmer group relative px-8 sm:px-12 py-4 sm:py-6 overflow-hidden rounded-full border border-foreground/30 bg-white/5 transition-all hover:border-foreground/60"
@@ -117,45 +129,51 @@ export default function HeroSection() {
             </div>
 
             {/* Floating Glass Cards — Desktop only */}
-            <motion.div
-                initial={{ opacity: 0, x: -60, rotate: -5 }}
-                animate={{ opacity: 1, x: 0, rotate: -2 }}
-                transition={{ duration: 1.2, delay: 1.2, type: "spring", stiffness: 60 }}
-                className="absolute bottom-16 left-8 hidden xl:block z-10"
-            >
-                <div className="glass-card p-7 rounded-2xl w-80 transform -rotate-2 hover:rotate-0 transition-transform duration-500 cursor-default"
-                    style={{ animation: "float-slow 8s ease-in-out infinite" }}
+            {allowMotion && (
+                <motion.div
+                    initial={{ opacity: 0, x: -60, rotate: -5 }}
+                    animate={{ opacity: 1, x: 0, rotate: -2 }}
+                    transition={{ duration: 1.2, delay: 1.2, type: "spring", stiffness: 60 }}
+                    className="absolute bottom-16 left-8 hidden xl:block z-10"
                 >
-                    <div className="flex items-center gap-3 mb-4 opacity-50">
-                        <span className="material-symbols-outlined text-lg">psychology</span>
-                        <span className="text-[10px] uppercase tracking-widest font-bold">Lo que aprenderás</span>
+                    <div
+                        className="glass-card p-7 rounded-2xl w-80 transform -rotate-2 hover:rotate-0 transition-transform duration-500 cursor-default"
+                        style={{ animation: "float-slow 8s ease-in-out infinite" }}
+                    >
+                        <div className="flex items-center gap-3 mb-4 opacity-50">
+                            <span className="material-symbols-outlined text-lg">psychology</span>
+                            <span className="text-[10px] uppercase tracking-widest font-bold">Lo que aprenderás</span>
+                        </div>
+                        <h3 className="font-serif italic text-xl mb-3">Deep Learning &amp; Redes Neuronales</h3>
+                        <p className="text-sm text-foreground/50 leading-relaxed">
+                            Domina arquitecturas complejas, desde Transformers hasta CNNs, aplicadas a problemas del mundo real.
+                        </p>
                     </div>
-                    <h3 className="font-serif italic text-xl mb-3">Deep Learning &amp; Redes Neuronales</h3>
-                    <p className="text-sm text-foreground/50 leading-relaxed">
-                        Domina arquitecturas complejas, desde Transformers hasta CNNs, aplicadas a problemas del mundo real.
-                    </p>
-                </div>
-            </motion.div>
+                </motion.div>
+            )}
 
-            <motion.div
-                initial={{ opacity: 0, x: 60, rotate: 5 }}
-                animate={{ opacity: 1, x: 0, rotate: 3 }}
-                transition={{ duration: 1.2, delay: 1.4, type: "spring", stiffness: 60 }}
-                className="absolute top-32 right-8 hidden xl:block z-10"
-            >
-                <div className="glass-card p-7 rounded-2xl w-80 transform rotate-3 hover:rotate-0 transition-transform duration-500 cursor-default"
-                    style={{ animation: "float-slow 10s ease-in-out infinite 2s" }}
+            {allowMotion && (
+                <motion.div
+                    initial={{ opacity: 0, x: 60, rotate: 5 }}
+                    animate={{ opacity: 1, x: 0, rotate: 3 }}
+                    transition={{ duration: 1.2, delay: 1.4, type: "spring", stiffness: 60 }}
+                    className="absolute top-32 right-8 hidden xl:block z-10"
                 >
-                    <div className="flex items-center gap-3 mb-4 opacity-50">
-                        <span className="material-symbols-outlined text-lg">monitoring</span>
-                        <span className="text-[10px] uppercase tracking-widest font-bold">Lo que aprenderás</span>
+                    <div
+                        className="glass-card p-7 rounded-2xl w-80 transform rotate-3 hover:rotate-0 transition-transform duration-500 cursor-default"
+                        style={{ animation: "float-slow 10s ease-in-out infinite 2s" }}
+                    >
+                        <div className="flex items-center gap-3 mb-4 opacity-50">
+                            <span className="material-symbols-outlined text-lg">monitoring</span>
+                            <span className="text-[10px] uppercase tracking-widest font-bold">Lo que aprenderás</span>
+                        </div>
+                        <h3 className="font-serif italic text-xl mb-3">Ciencia de Datos Aplicada</h3>
+                        <p className="text-sm text-foreground/50 leading-relaxed">
+                            Convierte datos crudos en conocimiento accionable mediante ingeniería de variables y modelos predictivos robustos.
+                        </p>
                     </div>
-                    <h3 className="font-serif italic text-xl mb-3">Ciencia de Datos Aplicada</h3>
-                    <p className="text-sm text-foreground/50 leading-relaxed">
-                        Convierte datos crudos en conocimiento accionable mediante ingeniería de variables y modelos predictivos robustos.
-                    </p>
-                </div>
-            </motion.div>
+                </motion.div>
+            )}
         </section>
     );
 }
