@@ -7,19 +7,18 @@ import AnimatedBackground from "@/components/AnimatedBackground";
 import { getEvents, getLatestPosts } from "@/lib/sanity.queries";
 
 const TeamSection = dynamic(() => import("@/components/sections/TeamSection"), {
-  ssr: false,
   loading: () => <div className="h-24" />,
 });
 const ProjectsCarousel = dynamic(() => import("@/components/sections/ProjectsCarousel"), {
-  ssr: false,
   loading: () => <div className="h-24" />,
 });
 const EventsSection = dynamic(() => import("@/components/sections/EventsSection"), {
-  ssr: false,
   loading: () => <div className="h-24" />,
 });
 const ContactSection = dynamic(() => import("@/components/sections/ContactSection"), {
-  ssr: false,
+  loading: () => <div className="h-24" />,
+});
+const BlogTeaserSection = dynamic(() => import("@/components/sections/BlogTeaserSection"), {
   loading: () => <div className="h-24" />,
 });
 
@@ -43,7 +42,3 @@ export default async function Home() {
     </main>
   );
 }
-const BlogTeaserSection = dynamic(() => import("@/components/sections/BlogTeaserSection"), {
-  ssr: false,
-  loading: () => <div className="h-24" />,
-});
