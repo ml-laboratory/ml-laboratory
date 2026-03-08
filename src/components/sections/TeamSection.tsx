@@ -110,10 +110,10 @@ export default function TeamSection() {
                 <div className="inline-block mb-4 md:mb-6">
                     <span className="font-serif italic text-base md:text-lg text-foreground/50 tracking-wide">— Nuestra Esencia</span>
                 </div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif mb-6 md:mb-10 leading-[1.1]">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-serif mb-6 md:mb-10 leading-[1.1]">
                     Sintetizando el futuro de la <br />
                     <span className="italic font-light opacity-80">Inteligencia Colectiva</span>
-                </h1>
+                </h2>
                 <p className="text-base md:text-xl font-light text-foreground/60 max-w-2xl mx-auto leading-relaxed px-2">
                     Somos una colectividad de IA y Ciencia de Datos en DSC UTP. Nuestra misión es democratizar el conocimiento avanzado.
                 </p>

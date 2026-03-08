@@ -4,15 +4,15 @@ import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 const navLinks = [
-    { label: "Investigación", href: "#" },
-    { label: "Dataset Hub", href: "#" },
-    { label: "Laboratorio", href: "#" },
+    { label: "Inicio", href: "/" },
+    { label: "Proyectos", href: "/#proyectos" },
+    { label: "Blog", href: "/blog" },
 ];
 
 const communityLinks = [
-    { label: "GitHub", href: "#" },
-    { label: "Discord", href: "#" },
-    { label: "LinkedIn", href: "#" },
+    { label: "GitHub", href: "https://github.com/Akicoders", external: true },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/nolverwilliamhuamanminga/", external: true },
+    { label: "Discord", href: "https://discord.gg/", external: true },
 ];
 
 export default function Footer() {
@@ -57,7 +57,13 @@ export default function Footer() {
                         <ul className="space-y-3 md:space-y-4 text-xs font-light">
                             {communityLinks.map((link) => (
                                 <li key={link.label}>
-                                    <a href={link.href} className="hover:text-white transition-colors text-foreground/60">{link.label}</a>
+                                    <a
+                                        href={link.href}
+                                        {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                                        className="hover:text-white transition-colors text-foreground/60"
+                                    >
+                                        {link.label}
+                                    </a>
                                 </li>
                             ))}
                         </ul>
@@ -88,14 +94,16 @@ export default function Footer() {
                 {/* Social Icons */}
                 <div className="flex justify-center gap-3 mt-6 md:mt-8">
                     {[
-                        { icon: <Github className="w-3.5 h-3.5" />, label: "GitHub" },
-                        { icon: <Linkedin className="w-3.5 h-3.5" />, label: "LinkedIn" },
-                        { icon: <Twitter className="w-3.5 h-3.5" />, label: "Twitter" },
-                        { icon: <Mail className="w-3.5 h-3.5" />, label: "Email" },
+                        { icon: <Github className="w-3.5 h-3.5" />, label: "GitHub de ML Laboratory DSC UTP", href: "https://github.com/Akicoders" },
+                        { icon: <Linkedin className="w-3.5 h-3.5" />, label: "LinkedIn de ML Laboratory DSC UTP", href: "https://www.linkedin.com/in/nolverwilliamhuamanminga/" },
+                        { icon: <Twitter className="w-3.5 h-3.5" />, label: "Twitter de ML Laboratory DSC UTP", href: "https://twitter.com/" },
+                        { icon: <Mail className="w-3.5 h-3.5" />, label: "Contactar a ML Laboratory por Email", href: "mailto:contacto@dsc-utp.site" },
                     ].map((s) => (
                         <a
                             key={s.label}
-                            href="#"
+                            href={s.href}
+                            target={s.href.startsWith("http") ? "_blank" : undefined}
+                            rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
                             className="p-2 text-foreground/40 hover:text-white hover:bg-white/10 rounded-full transition-all"
                             aria-label={s.label}
                         >
