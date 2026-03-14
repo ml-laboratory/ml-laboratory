@@ -192,20 +192,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Material Symbols — preload then apply non-blocking */}
+        {/* Material Symbols — stylesheet directo para SSR compatible */}
         <link
-          rel="preload"
+          rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0&display=swap"
-          as="style"
-          // @ts-expect-error onLoad is valid for preload link
-          onLoad="this.onload=null;this.rel='stylesheet'"
         />
-        <noscript>
-          <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0&display=swap"
-          />
-        </noscript>
       </head>
       <body
         className={`${inter.variable} ${playfair.variable} bg-background text-foreground min-h-screen font-sans`}
