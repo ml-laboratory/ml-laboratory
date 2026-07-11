@@ -1,8 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import type { SanityEvent } from "@/lib/sanity.types";
 import { formatEventDate } from "@/lib/format";
+import { urlFor } from "@/lib/sanity.image";
 
 type EventsSectionProps = {
     events: SanityEvent[];
@@ -107,6 +109,39 @@ export default function EventsSection({ events }: EventsSectionProps) {
                                         </button>
                                     )}
                                 </div>
+
+                                {event.isPrimary && event.talks && event.talks.length > 0 && (
+                                    <div className="glass-card mt-4 p-6 sm:p-8 rounded-2xl md:rounded-3xl">
+                                        <span className="text-[10px] uppercase tracking-[0.3em] text-foreground/40 block mb-4">
+                                            Charlas
+                                        </span>
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                                            {event.talks.map((talk) => {
+                                                const photoUrl = talk.photo ? urlFor(talk.photo)?.width(96).height(96).url() : null;
+                                                return (
+                                                    <div key={`${talk.talkTitle}-${talk.speakerName}`} className="flex items-start gap-4">
+                                                        {photoUrl && (
+                                                            <Image
+                                                                src={photoUrl}
+                                                                alt={talk.speakerName}
+                                                                width={48}
+                                                                height={48}
+                                                                className="rounded-full object-cover shrink-0"
+                                                            />
+                                                        )}
+                                                        <div>
+                                                            <p className="text-sm font-medium leading-snug">{talk.talkTitle}</p>
+                                                            <p className="text-xs text-accent/70 mt-1">{talk.speakerName}</p>
+                                                            <p className="text-[10px] uppercase tracking-widest text-foreground/40 mt-1">
+                                                                {[talk.squad, talk.timeRange].filter(Boolean).join(" · ")}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+                                    </div>
+                                )}
                             </motion.div>
                         </motion.div>
                     ))}

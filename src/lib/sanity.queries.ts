@@ -35,7 +35,8 @@ const eventFields = `{
   tag,
   isPrimary,
   ctaLabel,
-  ctaUrl
+  ctaUrl,
+  talks[]{talkTitle, speakerName, squad, photo, timeRange}
 }`;
 
 export async function getPosts(): Promise<SanityPostPreview[]> {

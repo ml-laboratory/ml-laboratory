@@ -41,6 +41,14 @@ export type SanityPost = SanityPostPreview & {
   content?: unknown[];
 };
 
+export type SanityTalk = {
+  talkTitle: string;
+  speakerName: string;
+  squad?: string;
+  photo?: SanityImage;
+  timeRange?: string;
+};
+
 export type SanityEvent = {
   _id: string;
   title: string;
@@ -53,4 +61,5 @@ export type SanityEvent = {
   isPrimary?: boolean;
   ctaLabel?: string;
   ctaUrl?: string;
+  talks?: SanityTalk[];
 };

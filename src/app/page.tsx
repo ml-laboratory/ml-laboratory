@@ -9,6 +9,9 @@ import { getEvents, getLatestPosts } from "@/lib/sanity.queries";
 const TeamSection = dynamic(() => import("@/components/sections/TeamSection"), {
   loading: () => <div className="h-24" />,
 });
+const DepartmentsSection = dynamic(() => import("@/components/sections/DepartmentsSection"), {
+  loading: () => <div className="h-24" />,
+});
 const ProjectsCarousel = dynamic(() => import("@/components/sections/ProjectsCarousel"), {
   loading: () => <div className="h-24" />,
 });
@@ -33,6 +36,7 @@ export default async function Home() {
       <HeroSection />
       <EvolutionTimeline />
       <TeamSection />
+      <DepartmentsSection />
       <ProjectsCarousel />
       <BlogTeaserSection posts={latestPosts} />
       <EventsSection events={events} />
