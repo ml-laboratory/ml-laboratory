@@ -1,5 +1,5 @@
 const GITHUB_API_BASE = "https://api.github.com";
-const DEFAULT_OWNER = "Akicoders";
+const DEFAULT_OWNER = "ML-Laboratory-Community";
 const DEFAULT_TOPIC = "ml-laboratory-project";
 const LANDING_REPOSITORY = "ml-laboratory";
 const MAX_REPOSITORIES = 20;

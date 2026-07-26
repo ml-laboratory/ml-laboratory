@@ -1,6 +1,6 @@
 # Contributing to ML Laboratory
 
-ML Laboratory is a landing site for independent, public project repositories. The landing catalog is driven by GitHub repositories owned by `ml-laboratory` and tagged with the `ml-laboratory-project` topic. Configure `GITHUB_PROJECT_OWNER_TYPE=user` for a personal owner (the default), or `GITHUB_PROJECT_OWNER_TYPE=org` for an organization owner.
+ML Laboratory is a landing site for independent, public project repositories. The landing catalog is driven by GitHub repositories owned by `ML-Laboratory-Community` and tagged with the `ml-laboratory-project` topic. Configure `GITHUB_PROJECT_OWNER_TYPE=org` for the community organization, or `GITHUB_PROJECT_OWNER_TYPE=user` for a personal owner.
 
 The catalog revalidates hourly. If GitHub or an individual project README request fails, the site degrades safely instead of allowing the landing page to fail.
 
