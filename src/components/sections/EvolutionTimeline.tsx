@@ -79,8 +79,8 @@ export default function EvolutionTimeline() {
                         className="absolute left-[28px] md:left-1/2 top-0 w-[2px] -translate-x-1/2 origin-top"
                         style={{
                             height: lineHeight,
-                            background: "linear-gradient(to bottom, rgba(56, 189, 248, 0.4), rgba(226, 232, 240, 0.6))",
-                            boxShadow: "0 0 12px rgba(56, 189, 248, 0.3), 0 0 30px rgba(56, 189, 248, 0.1)",
+                            background: "linear-gradient(to bottom, rgba(124, 58, 237, 0.45), rgba(167, 139, 250, 0.5))",
+                            boxShadow: "0 0 12px rgba(124, 58, 237, 0.25), 0 0 30px rgba(124, 58, 237, 0.1)",
                         }}
                     />
 
@@ -91,7 +91,6 @@ export default function EvolutionTimeline() {
                                 <TimelineItem
                                     key={index}
                                     event={event}
-                                    index={index}
                                     isEven={isEven}
                                 />
                             );
@@ -103,7 +102,7 @@ export default function EvolutionTimeline() {
     );
 }
 
-function TimelineItem({ event, index, isEven }: { event: typeof timelineEvents[0], index: number, isEven: boolean }) {
+function TimelineItem({ event, isEven }: { event: typeof timelineEvents[0], isEven: boolean }) {
     const itemRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: itemRef,
@@ -122,7 +121,7 @@ function TimelineItem({ event, index, isEven }: { event: typeof timelineEvents[0
             <div className="absolute left-[28px] md:left-1/2 -translate-x-1/2 flex items-center justify-center z-20">
                 <motion.div
                     style={{ scale, opacity }}
-                    className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-foreground/20 bg-background flex items-center justify-center transition-all duration-300 group-hover:border-accent/60 group-hover:shadow-[0_0_20px_rgba(56,189,248,0.2)]"
+                    className="w-12 h-12 md:w-14 md:h-14 rounded-full border border-primary/20 bg-surface flex items-center justify-center transition-[border-color,box-shadow] duration-300 group-hover:border-primary/60 group-hover:shadow-[0_0_20px_rgba(124,58,237,0.2)]"
                 >
                     <motion.span
                         className="material-symbols-outlined text-foreground/70 font-thin"
@@ -143,7 +142,7 @@ function TimelineItem({ event, index, isEven }: { event: typeof timelineEvents[0
                 className="w-full pl-16 md:pl-0 md:w-1/2 md:px-12"
             >
                 <motion.div
-                    className="glass-card rounded-2xl md:rounded-3xl p-6 md:p-8 relative overflow-hidden group-hover:border-foreground/20 transition-all duration-500"
+                    className="glass-card rounded-2xl md:rounded-3xl p-6 md:p-8 relative overflow-hidden group-hover:border-primary/40 transition-[border-color,box-shadow] duration-300"
                     whileHover={{ y: -4, transition: { duration: 0.3 } }}
                     style={{ animation: "glow-breathe 4s ease-in-out infinite" }}
                 >

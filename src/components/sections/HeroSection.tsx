@@ -3,26 +3,34 @@
 import { motion, useReducedMotion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { NeuralParticles } from "@/remotion/NeuralParticles";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { ArrowRight } from "lucide-react";
 
 const RemotionPlayer = dynamic(() => import("@remotion/player").then((mod) => mod.Player), {
     ssr: false,
 });
 
-export default function HeroSection() {
-    const [isMounted, setIsMounted] = useState(false);
-    const [isDesktop, setIsDesktop] = useState(false);
-    const prefersReducedMotion = useReducedMotion();
+function subscribeToDesktopMediaQuery(onStoreChange: () => void) {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    mediaQuery.addEventListener("change", onStoreChange);
+    return () => mediaQuery.removeEventListener("change", onStoreChange);
+}
 
-    useEffect(() => {
-        setIsMounted(true);
-        const mediaQuery = window.matchMedia("(min-width: 768px)");
-        const update = () => setIsDesktop(mediaQuery.matches);
-        update();
-        mediaQuery.addEventListener("change", update);
-        return () => mediaQuery.removeEventListener("change", update);
-    }, []);
+function getDesktopMediaQuerySnapshot() {
+    return window.matchMedia("(min-width: 768px)").matches;
+}
+
+function getServerDesktopMediaQuerySnapshot() {
+    return false;
+}
+
+export default function HeroSection() {
+    const isDesktop = useSyncExternalStore(
+        subscribeToDesktopMediaQuery,
+        getDesktopMediaQuerySnapshot,
+        getServerDesktopMediaQuerySnapshot
+    );
+    const prefersReducedMotion = useReducedMotion();
 
     const allowMotion = !prefersReducedMotion && isDesktop;
     const preHeaderMotion = allowMotion
@@ -43,13 +51,12 @@ export default function HeroSection() {
 
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-28 md:pt-32 pb-16 md:pb-24 px-4 sm:px-8 md:px-16" id="inicio">
-            {/* Deep ocean base */}
-            <div className="absolute inset-0 z-0 bg-deep-ocean pointer-events-none" />
-            <div className="absolute inset-0 z-0 bg-mesh opacity-40 pointer-events-none" />
+            <div className="absolute inset-0 z-0 bg-surface-muted pointer-events-none" />
+            <div className="absolute inset-0 z-0 bg-mesh opacity-70 pointer-events-none" />
 
             {/* Remotion Neural Particles Background */}
-            {isMounted && allowMotion && (
-                <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-30 md:opacity-40 mix-blend-screen">
+            {allowMotion && (
+                <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-20 md:opacity-30">
                     <RemotionPlayer
                         component={NeuralParticles}
                         durationInFrames={600}
@@ -69,7 +76,7 @@ export default function HeroSection() {
             )}
 
             {/* Radial vignette overlay */}
-            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,#020617_80%)] pointer-events-none" />
+            <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(250,245,255,0.9)_80%)] pointer-events-none" />
 
             {/* Main Content */}
             <div className="relative z-10 w-full max-w-5xl mx-auto flex flex-col items-center text-center">
@@ -112,7 +119,7 @@ export default function HeroSection() {
                 <motion.div {...ctaMotion} className="flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
                     <a
                         href="#contact"
-                        className="btn-shimmer group relative px-8 sm:px-12 py-4 sm:py-6 overflow-hidden rounded-full border border-foreground/30 bg-white/5 transition-all hover:border-foreground/60"
+                        className="button-primary btn-shimmer group relative px-8 sm:px-12 py-4 sm:py-6 overflow-hidden rounded-full"
                     >
                         <span className="relative z-10 text-xs sm:text-sm uppercase tracking-[0.2em] font-medium">
                             DA UNA PONENCIA
@@ -120,7 +127,7 @@ export default function HeroSection() {
                     </a>
                     <a
                         href="#proyectos"
-                        className="text-xs sm:text-sm uppercase tracking-[0.2em] font-light opacity-60 hover:opacity-100 transition-opacity flex items-center gap-2"
+                        className="text-xs sm:text-sm uppercase tracking-[0.2em] font-medium text-primary-strong hover:text-foreground transition-colors duration-200 flex items-center gap-2"
                     >
                         EXPLORAR PROYECTOS
                         <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />

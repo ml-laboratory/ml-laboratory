@@ -14,7 +14,13 @@ const components: PortableTextComponents = {
       if (!imageUrl) return null;
       return (
         <div className="relative w-full h-64 sm:h-80 md:h-[420px] rounded-2xl overflow-hidden glass-card my-10">
-          <Image src={imageUrl} alt={value.alt || ""} fill className="object-cover" />
+          <Image
+            src={imageUrl}
+            alt={value.alt || ""}
+            fill
+            sizes="(min-width: 768px) 640px, (min-width: 640px) calc(100vw - 64px), calc(100vw - 32px)"
+            className="object-cover"
+          />
         </div>
       );
     },

@@ -1,72 +1,51 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Database, BrainCircuit, Workflow } from "lucide-react";
-
-const departments = [
-    {
-        icon: <Database className="w-8 h-8 text-primary" />,
-        title: "Ciencia de Datos",
-        description: "Análisis, visualización y modelado de datos para resolver problemas reales con evidencia.",
-    },
-    {
-        icon: <BrainCircuit className="w-8 h-8 text-accent" />,
-        title: "IA",
-        description: "Agentes inteligentes, automatización cognitiva y soluciones basadas en modelos de lenguaje.",
-    },
-    {
-        icon: <Workflow className="w-8 h-8 text-secondary" />,
-        title: "Automatización",
-        description: "Optimización de procesos y flujos de trabajo mediante herramientas y sistemas automatizados.",
-    },
-];
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { departments } from "@/data/departments";
 
 export default function DepartmentsSection() {
-    return (
-        <section id="departamentos" className="py-24 relative">
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="text-center mb-16">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className="text-3xl md:text-5xl font-bold tracking-tight mb-4"
-                    >
-                        Nuestros Departamentos
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ delay: 0.1 }}
-                        className="text-foreground/70 max-w-2xl mx-auto text-lg"
-                    >
-                        Tres squads, un mismo propósito: construir soluciones que generan impacto real.
-                    </motion.p>
-                </div>
+  return (
+    <section id="departamentos" className="relative z-10 scroll-mt-20 overflow-hidden px-4 py-24 sm:px-6 md:scroll-mt-24 md:py-32">
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="mb-16 text-center md:mb-20">
+          <p className="mb-3 font-serif text-base tracking-wide text-primary-strong md:text-lg">
+            Tres squads, un propósito
+          </p>
+          <h2 className="mb-4 text-3xl leading-[1.1] text-balance sm:text-4xl md:mb-6 md:text-5xl lg:text-6xl">
+            Nuestros <span className="text-primary-strong">Departamentos</span>
+          </h2>
+          <p className="mx-auto max-w-2xl text-base leading-relaxed text-foreground/75 md:text-lg">
+            Construyendo soluciones que generan impacto real desde la inteligencia colectiva.
+          </p>
+        </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {departments.map((dept, index) => (
-                        <motion.div
-                            key={dept.title}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-50px" }}
-                            transition={{ delay: index * 0.1 + 0.2, duration: 0.5 }}
-                            whileHover={{ y: -5 }}
-                            className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-primary/50 transition-colors group cursor-pointer"
-                        >
-                            <div className="mb-6 p-4 rounded-2xl bg-black/50 inline-block group-hover:scale-110 transition-transform">
-                                {dept.icon}
-                            </div>
-                            <h3 className="text-xl font-bold mb-3">{dept.title}</h3>
-                            <p className="text-foreground/60 leading-relaxed">
-                                {dept.description}
-                            </p>
-                        </motion.div>
-                    ))}
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-3 md:gap-6 lg:gap-8">
+          {departments.map((department) => {
+            const Icon = department.icon;
+
+            return (
+              <Link
+                key={department.slug}
+                href={`/departamentos/${department.slug}`}
+                className="ui-card group relative flex min-h-72 flex-col overflow-hidden rounded-3xl p-8 focus-visible:outline-primary-strong md:p-10"
+                aria-describedby={`${department.slug}-description`}
+              >
+                <div className={`absolute inset-x-0 top-0 h-1 bg-gradient-to-r ${department.accentClassName}`} />
+                <div className="mb-6 inline-flex w-fit rounded-2xl border border-primary/20 bg-surface-muted p-4 text-primary-strong transition-[background-color,border-color,transform] duration-200 group-hover:translate-x-1 group-hover:border-primary/50 group-hover:bg-white">
+                  <Icon className="h-8 w-8" aria-hidden="true" />
                 </div>
-            </div>
-        </section>
-    );
+                <h3 className="mb-3 text-xl tracking-tight md:text-2xl">{department.title}</h3>
+                <p id={`${department.slug}-description`} className="flex-grow text-sm leading-relaxed text-foreground/75 md:text-base">
+                  {department.description}
+                </p>
+                <span className="mt-8 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary-strong">
+                  Conocer el departamento
+                  <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
 }

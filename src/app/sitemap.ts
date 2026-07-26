@@ -1,4 +1,5 @@
 import { MetadataRoute } from "next";
+import { departments } from "@/data/departments";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.dsc-utp.site";
@@ -17,5 +18,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "daily",
       priority: 0.8,
     },
+    ...departments.map((department) => ({
+      url: `${baseUrl}/departamentos/${department.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }

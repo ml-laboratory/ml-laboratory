@@ -60,9 +60,7 @@ export default function EventsSection({ events }: EventsSectionProps) {
                             <div className="hidden md:flex relative w-4 h-4 rounded-full border border-foreground/40 items-center justify-center bg-background z-10 group-hover:scale-125 transition-transform">
                                 <motion.div
                                     className="w-1.5 h-1.5 rounded-full"
-                                    style={{
-                                        backgroundColor: event.isPrimary ? "#38bdf8" : "rgba(226, 232, 240, 0.3)",
-                                    }}
+                                    style={{ backgroundColor: event.isPrimary ? "#7c3aed" : "rgba(76, 29, 149, 0.3)" }}
                                     animate={event.isPrimary ? { scale: [1, 1.5, 1], opacity: [0.8, 1, 0.8] } : {}}
                                     transition={{ duration: 2, repeat: Infinity }}
                                 />
@@ -74,7 +72,7 @@ export default function EventsSection({ events }: EventsSectionProps) {
                                 whileHover={{ y: -4 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                <div className={`glass-card p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 hover:border-white/15 transition-all duration-500 ${!event.isPrimary ? 'opacity-70 hover:opacity-100' : ''}`}
+                                <div className={`glass-card p-6 sm:p-8 md:p-10 rounded-2xl md:rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 hover:border-primary/40 transition-[border-color,box-shadow,opacity] duration-300 ${!event.isPrimary ? 'opacity-70 hover:opacity-100' : ''}`}
                                     style={{ animation: event.isPrimary ? "glow-breathe 5s ease-in-out infinite" : undefined }}
                                 >
                                     <div className="flex-grow">
@@ -85,24 +83,24 @@ export default function EventsSection({ events }: EventsSectionProps) {
                                                 <span className="material-symbols-outlined text-sm">location_on</span>
                                                 {event.location || ""}
                                             </span>
-                                            <span className="px-3 py-1 border border-white/10 rounded-full">{event.tag || ""}</span>
+                                            <span className="px-3 py-1 border border-primary/15 rounded-full">{event.tag || ""}</span>
                                         </div>
                                     </div>
                                     {event.ctaUrl ? (
                                         <a
                                             href={event.ctaUrl}
-                                            className={`shrink-0 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-[10px] uppercase tracking-[0.2em] transition-all w-full sm:w-auto text-center ${event.isPrimary
-                                                ? 'bg-white text-background font-bold hover:bg-foreground shadow-[0_0_20px_rgba(255,255,255,0.15)]'
-                                                : 'glass-card font-light hover:bg-white/5'
+                                            className={`shrink-0 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-[10px] uppercase tracking-[0.2em] transition-[background-color,border-color,box-shadow,transform] duration-200 w-full sm:w-auto text-center ${event.isPrimary
+                                                ? 'button-primary font-bold'
+                                                : 'button-secondary font-light'
                                                 }`}
                                         >
                                             {event.ctaLabel || (event.isPrimary ? "Inscribirse" : "Saber más")}
                                         </a>
                                     ) : (
                                         <button
-                                            className={`shrink-0 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-[10px] uppercase tracking-[0.2em] transition-all w-full sm:w-auto text-center ${event.isPrimary
-                                                ? 'bg-white text-background font-bold hover:bg-foreground shadow-[0_0_20px_rgba(255,255,255,0.15)]'
-                                                : 'glass-card font-light hover:bg-white/5'
+                                            className={`shrink-0 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full text-[10px] uppercase tracking-[0.2em] transition-[background-color,border-color,box-shadow,transform] duration-200 w-full sm:w-auto text-center ${event.isPrimary
+                                                ? 'button-primary font-bold'
+                                                : 'button-secondary font-light'
                                                 }`}
                                         >
                                             {event.ctaLabel || (event.isPrimary ? "Inscribirse" : "Saber más")}

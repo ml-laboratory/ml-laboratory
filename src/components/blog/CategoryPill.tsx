@@ -6,7 +6,7 @@ type CategoryPillProps = {
 
 export default function CategoryPill({ category }: CategoryPillProps) {
   return (
-    <span className="px-3 py-1 rounded-full border border-white/10 text-[10px] uppercase tracking-[0.2em] text-foreground/50">
+    <span className="px-3 py-1 rounded-full border border-primary/15 bg-white/80 text-[10px] uppercase tracking-[0.2em] text-foreground/70">
       {category.title}
     </span>
   );

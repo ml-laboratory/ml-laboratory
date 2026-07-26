@@ -128,7 +128,7 @@ export default function TeamSection() {
                     className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-20 gap-4 md:gap-8 px-2 md:px-4"
                 >
                     <div className="max-w-xl">
-                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif italic mb-3 md:mb-4 font-semibold tracking-tight text-white">El Equipo</h2>
+                        <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif mb-3 md:mb-4 font-semibold tracking-tight text-primary-strong">El Equipo</h2>
                         <p className="text-foreground/50 font-light text-base md:text-lg">Mentes dedicadas a explorar las fronteras de los algoritmos y la arquitectura de datos.</p>
                     </div>
                     <div className="text-[11px] uppercase tracking-[0.2em] opacity-40 pb-2">
@@ -151,7 +151,7 @@ export default function TeamSection() {
                         >
                             <TiltCard
                                 disabled={disableHeavyEffects}
-                                className="group relative glass-card rounded-3xl overflow-hidden hover:border-foreground/20 transition-all duration-500 flex flex-col h-full cursor-default"
+                                className="group relative glass-card rounded-3xl overflow-hidden hover:border-primary/40 transition-[border-color,box-shadow] duration-300 flex flex-col h-full cursor-default"
                             >
                                 {/* Animated orb — desktop only */}
                                 {!disableHeavyEffects && (
@@ -169,7 +169,7 @@ export default function TeamSection() {
                                         fill
                                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                                         quality={95}
-                                        className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                                        className="object-cover object-top grayscale group-hover:grayscale-0 transition-[filter,transform] duration-500 group-hover:scale-105"
                                         placeholder="blur"
                                         priority={i === 0}
                                     />
@@ -185,7 +185,7 @@ export default function TeamSection() {
                                 </div>
 
                                 {/* Footer with social */}
-                                <div className="mt-auto px-5 md:px-6 pb-5 md:pb-6 pt-4 border-t border-white/5 flex items-center gap-3 relative z-10">
+                                <div className="mt-auto px-5 md:px-6 pb-5 md:pb-6 pt-4 border-t border-primary/15 flex items-center gap-3 relative z-10">
                                     <a
                                         href={member.github}
                                         target="_blank"
@@ -244,10 +244,10 @@ export default function TeamSection() {
                             Buscamos mentes curiosas apasionadas por los datos. Sé parte del DSC: únete a nuestra próxima sesión o presenta tu investigación.
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6">
-                            <button className="btn-shimmer px-8 md:px-10 py-4 md:py-5 bg-white text-background rounded-full text-xs md:text-sm uppercase tracking-widest font-medium hover:bg-foreground transition-colors">
+                            <button className="button-primary btn-shimmer px-8 md:px-10 py-4 md:py-5 rounded-full text-xs md:text-sm uppercase tracking-widest">
                                 Sé ponente
                             </button>
-                            <button className="px-8 md:px-10 py-4 md:py-5 glass-card rounded-full text-xs md:text-sm uppercase tracking-widest font-light hover:bg-white/10 transition-all">
+                            <button className="button-secondary px-8 md:px-10 py-4 md:py-5 rounded-full text-xs md:text-sm uppercase tracking-widest">
                                 Saber más
                             </button>
                         </div>

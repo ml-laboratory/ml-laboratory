@@ -14,7 +14,7 @@ export default function PostHeader({ post }: PostHeaderProps) {
 
   return (
     <section className="relative w-full max-w-5xl mx-auto px-4 sm:px-8 md:px-16 pt-32 md:pt-36 pb-12 md:pb-16">
-      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-slate-950 via-background to-background" />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-surface-muted via-background to-background" />
 
       <div className="mb-8 md:mb-10">
         <p className="text-[11px] uppercase tracking-[0.5em] text-foreground/40 mb-4">
@@ -41,7 +41,7 @@ export default function PostHeader({ post }: PostHeaderProps) {
                   href={link.url}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="px-3 py-1 rounded-full border border-white/10 hover:border-white/30 transition-colors"
+                  className="px-3 py-1 rounded-full border border-primary/15 hover:border-primary/50 transition-colors duration-200"
                 >
                   {link.label}
                 </a>
@@ -62,7 +62,8 @@ export default function PostHeader({ post }: PostHeaderProps) {
             src={coverUrl}
             alt={post.title}
             fill
-            className="object-contain bg-black/40 opacity-90"
+            sizes="(min-width: 1024px) 896px, (min-width: 768px) calc(100vw - 128px), (min-width: 640px) calc(100vw - 64px), calc(100vw - 32px)"
+            className="object-contain bg-surface-muted opacity-90"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
         </div>

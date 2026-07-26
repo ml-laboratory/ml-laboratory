@@ -41,8 +41,8 @@ export default function ContactSection() {
     return (
         <section id="contact" className="py-16 md:py-24 relative overflow-hidden z-10">
             {/* Ambient glows */}
-            <div className="absolute -top-20 -left-20 w-64 md:w-96 h-64 md:h-96 bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" />
-            <div className="absolute -bottom-20 -right-20 w-80 md:w-[500px] h-80 md:h-[500px] bg-slate-800/10 blur-[150px] rounded-full pointer-events-none" />
+            <div className="absolute -top-20 -left-20 w-64 md:w-96 h-64 md:h-96 bg-secondary/20 blur-[120px] rounded-full pointer-events-none" />
+            <div className="absolute -bottom-20 -right-20 w-80 md:w-[500px] h-80 md:h-[500px] bg-primary/10 blur-[150px] rounded-full pointer-events-none" />
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-16 w-full">
                 {/* Header */}
@@ -125,17 +125,17 @@ export default function ContactSection() {
                             <button
                                 type="submit"
                                 disabled={status === 'loading' || status === 'success'}
-                                className="btn-shimmer group relative px-10 md:px-12 py-4 overflow-hidden rounded-full border border-foreground/20 bg-white/5 transition-all hover:border-foreground/50 w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="button-primary btn-shimmer group relative px-10 md:px-12 py-4 overflow-hidden rounded-full w-full md:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                             >
                                 <span className="relative z-10 text-xs md:text-sm uppercase tracking-[0.2em] font-medium">
-                                    {status === 'loading' ? 'Enviando...' : status === 'success' ? 'Enviado!' : status === 'error' ? 'Error - Intentar de nuevo' : 'Enviar Propuesta'}
+                                    {status === 'loading' ? 'Enviando…' : status === 'success' ? 'Enviado!' : status === 'error' ? 'Error - Intentar de nuevo' : 'Enviar Propuesta'}
                                 </span>
                             </button>
                             {status === 'success' && (
-                                <p className="absolute -bottom-8 text-green-400 text-sm">¡Mensaje enviado correctamente!</p>
+                                <p className="absolute -bottom-8 text-accent text-sm" aria-live="polite">¡Mensaje enviado correctamente!</p>
                             )}
                             {status === 'error' && (
-                                <p className="absolute -bottom-8 text-red-400 text-sm">Error al enviar. Intenta de nuevo.</p>
+                                <p className="absolute -bottom-8 text-red-700 text-sm" aria-live="polite">Error al enviar. Intenta de nuevo.</p>
                             )}
                         </div>
                     </form>

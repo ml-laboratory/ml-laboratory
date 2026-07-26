@@ -23,7 +23,7 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
-      className="group relative glass-card rounded-3xl overflow-hidden border border-white/10 hover:border-white/20 transition-all"
+      className="group relative glass-card rounded-3xl overflow-hidden border border-primary/15 hover:border-primary/40 transition-[border-color,box-shadow] duration-200"
     >
       <div className="relative h-56 sm:h-64 md:h-72 overflow-hidden">
         {coverUrl ? (
@@ -31,10 +31,11 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
             src={coverUrl}
             alt={post.title}
             fill
-            className="object-contain bg-black/40 opacity-80 group-hover:opacity-100 transition-opacity duration-700"
+            sizes="(min-width: 1280px) 556px, (min-width: 1024px) calc((100vw - 168px) / 2), (min-width: 768px) calc(100vw - 128px), (min-width: 640px) calc(100vw - 64px), calc(100vw - 32px)"
+            className="object-contain bg-surface-muted opacity-80 group-hover:opacity-100 transition-opacity duration-700"
           />
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-950 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-br from-secondary/40 via-surface-muted to-background" />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/40 to-transparent" />
         <div className="absolute top-4 left-4 flex flex-wrap gap-2">
@@ -62,7 +63,7 @@ export default function PostCard({ post, index = 0 }: PostCardProps) {
           {post.slug ? (
             <Link
               href={`/blog/${post.slug}`}
-              className="text-[10px] uppercase tracking-[0.3em] text-foreground/50 hover:text-white transition-colors"
+              className="text-[10px] uppercase tracking-[0.3em] text-foreground/65 hover:text-primary-strong transition-colors duration-200"
             >
               Leer
             </Link>

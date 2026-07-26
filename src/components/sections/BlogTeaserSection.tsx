@@ -25,7 +25,7 @@ export default function BlogTeaserSection({ posts }: BlogTeaserSectionProps) {
         </div>
         <Link
           href="/blog"
-          className="text-[10px] uppercase tracking-[0.3em] text-foreground/50 hover:text-white transition-colors"
+          className="text-[10px] uppercase tracking-[0.3em] text-foreground/65 hover:text-primary-strong transition-colors duration-200"
         >
           Ver todo el blog
         </Link>

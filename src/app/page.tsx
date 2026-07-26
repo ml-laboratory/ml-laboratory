@@ -5,6 +5,7 @@ import HeroSection from "@/components/sections/HeroSection";
 import EvolutionTimeline from "@/components/sections/EvolutionTimeline";
 import AnimatedBackground from "@/components/AnimatedBackground";
 import { getEvents, getLatestPosts } from "@/lib/sanity.queries";
+import { getGithubProjects } from "@/lib/github-projects";
 
 const TeamSection = dynamic(() => import("@/components/sections/TeamSection"), {
   loading: () => <div className="h-24" />,
@@ -26,10 +27,14 @@ const BlogTeaserSection = dynamic(() => import("@/components/sections/BlogTeaser
 });
 
 export default async function Home() {
-  const [events, latestPosts] = await Promise.all([getEvents(), getLatestPosts(2)]);
+  const [events, latestPosts, projects] = await Promise.all([
+    getEvents(),
+    getLatestPosts(2),
+    getGithubProjects(),
+  ]);
 
   return (
-    <main className="min-h-screen bg-background text-foreground flex flex-col relative">
+    <main id="main-content" className="min-h-screen bg-background text-foreground flex flex-col relative">
       <AnimatedBackground />
       <Navbar />
 
@@ -37,7 +42,7 @@ export default async function Home() {
       <EvolutionTimeline />
       <TeamSection />
       <DepartmentsSection />
-      <ProjectsCarousel />
+      <ProjectsCarousel projects={projects} />
       <BlogTeaserSection posts={latestPosts} />
       <EventsSection events={events} />
       <ContactSection />

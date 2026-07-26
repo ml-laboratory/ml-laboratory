@@ -100,12 +100,12 @@ export default function AnimatedBackground() {
             {/* Central ambient glow */}
             {allowMotion ? (
                 <motion.div
-                    className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] md:w-[1200px] md:h-[1200px] bg-blue-900/10 blur-[200px] rounded-full z-0 pointer-events-none"
+                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] md:w-[1200px] md:h-[1200px] bg-secondary/15 blur-[200px] rounded-full z-0 pointer-events-none"
                     animate={{ scale: [1, 1.05, 1], opacity: [0.6, 0.8, 0.6] }}
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
                 />
             ) : (
-                <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] md:w-[1200px] md:h-[1200px] bg-blue-900/10 blur-[200px] rounded-full z-0 pointer-events-none" />
+                <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] md:w-[1200px] md:h-[1200px] bg-secondary/15 blur-[200px] rounded-full z-0 pointer-events-none" />
             )}
         </>
     );

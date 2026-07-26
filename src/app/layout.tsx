@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { Fira_Code, Fira_Sans } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const firaCode = Fira_Code({
+  variable: "--font-fira-code",
   subsets: ["latin"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const firaSans = Fira_Sans({
+  variable: "--font-fira-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const siteUrl = "https://www.dsc-utp.site";
@@ -185,7 +185,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning className="dark selection:bg-foreground selection:text-background">
+    <html lang="es">
       <head>
         {/* JSON-LD Structured Data */}
         <script
@@ -198,17 +198,11 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,200,0,0&display=swap"
         />
       </head>
-      <body
-        className={`${inter.variable} ${playfair.variable} bg-background text-foreground min-h-screen font-sans`}
-        suppressHydrationWarning
-      >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
-        >
-          {children}
-        </ThemeProvider>
+      <body className={`${firaSans.variable} ${firaCode.variable} bg-background text-foreground min-h-screen font-sans`}>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-primary-strong focus:shadow-lg">
+          Ir al contenido principal
+        </a>
+        {children}
       </body>
     </html>
   );
