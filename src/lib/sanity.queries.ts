@@ -1,5 +1,18 @@
+import type { QueryParams } from "@sanity/client";
 import { sanityClient } from "./sanity.client";
 import type { SanityEvent, SanityPost, SanityPostPreview } from "./sanity.types";
+
+async function safeSanityFetch<T>(query: string, params?: QueryParams): Promise<T | null> {
+  if (!sanityClient) return null;
+
+  try {
+    return params
+      ? await sanityClient.fetch<T, QueryParams>(query, params)
+      : await sanityClient.fetch<T>(query);
+  } catch {
+    return null;
+  }
+}
 
 const postPreviewFields = `{
   _id,
@@ -40,22 +53,18 @@ const eventFields = `{
 }`;
 
 export async function getPosts(): Promise<SanityPostPreview[]> {
-  if (!sanityClient) return [];
-  return sanityClient.fetch(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) ${postPreviewFields}`);
+  return (await safeSanityFetch<SanityPostPreview[]>(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) ${postPreviewFields}`)) ?? [];
 }
 
 export async function getLatestPosts(limit = 2): Promise<SanityPostPreview[]> {
-  if (!sanityClient) return [];
-  return sanityClient.fetch(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) [0...${limit}] ${postPreviewFields}`);
+  return (await safeSanityFetch<SanityPostPreview[]>(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) [0...${limit}] ${postPreviewFields}`)) ?? [];
 }
 
 export async function getPostBySlug(slug: string): Promise<SanityPost | null> {
   if (!slug) return null;
-  if (!sanityClient) return null;
-  return sanityClient.fetch(`*[_type == "post" && slug.current == $slug][0] ${postFields}`, { slug });
+  return (await safeSanityFetch<SanityPost>(`*[_type == "post" && slug.current == $slug][0] ${postFields}`, { slug })) ?? null;
 }
 
 export async function getEvents(): Promise<SanityEvent[]> {
-  if (!sanityClient) return [];
-  return sanityClient.fetch(`*[_type == "event"] | order(date asc) ${eventFields}`);
+  return (await safeSanityFetch<SanityEvent[]>(`*[_type == "event"] | order(date asc) ${eventFields}`)) ?? [];
 }
